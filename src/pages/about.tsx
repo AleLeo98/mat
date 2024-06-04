@@ -1,5 +1,3 @@
-// src/app/about/page.tsx
-
 import * as React from "react";
 import Image from 'next/image';
 

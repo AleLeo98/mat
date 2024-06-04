@@ -1,238 +1,239 @@
-import * as React from "react";
-import Link from "next/link";
-import MATLogo from "../public/Images/MATLogo.png";
+import React, { useState } from 'react';
+import LanguageSelector from '../components/LanguageSelector'; // Adjust the path based on your directory structure
 
+const Homepage: React.FC = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState<'EN' | 'IT'>('EN');
 
-function HomePage() {
+  const content = {
+    EN: {
+      playMat: 'Play MAT',
+      promoteAwareness: 'Promote Awareness on Gender Biases',
+      moreInclusive: 'Engage teachers in an interactive memory game that prompts reflection on unconscious gender associations.',
+      memoryTest: 'Memory association test',
+      joinMovement: 'Join the Movement',
+      playNow: 'Play now'
+    },
+    IT: {
+      playMat: 'Gioca a MAT',
+      promoteAwareness: 'Promuovi la consapevolezza sui pregiudizi di genere',
+      moreInclusive: 'Coinvolgi gli insegnanti in un gioco di memoria interattivo che invita a riflettere sulle associazioni di genere inconsce.',
+      memoryTest: 'Test di associazione della memoria',
+      joinMovement: 'Unisciti al Movimento',
+      playNow: 'Gioca ora'
+    }
+  };
+
+  const selectedContent = content[selectedLanguage];
+
   return (
-    <div className="flex flex-col bg-white">
-      <div className="flex flex-col justify-center px-16 py-4 w-full text-base leading-6 bg-white border-0 border-solid border-sky-950 max-md:px-5 max-md:max-w-full">
-        <div className="flex gap-5 justify-between items-center w-full max-md:flex-wrap max-md:mr-1 max-md:max-w-full">
-          <img
-            loading="lazy"
-            src={process.env.PUBLIC_URL + '/MATLogo.png'} 
-            alt="Logo"
-            className="shrink-0 self-stretch my-auto aspect-[2.33] w-[63px]"
-          />
-          <div className="flex gap-5 justify-between self-stretch my-auto text-sky-950">
-            <div>Play Game</div>
-            <a href="/about" className="hover:text-sky-700">About</a>
-            <div>How to Play</div>
-            <div className="flex gap-1 justify-center whitespace-nowrap">
-              <div>Contact</div>
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/664b49a236e4eed7339595b45768ed588906d63ba9d8690e901d53ec9b0ace63?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                className="shrink-0 w-6 aspect-square"
-              />
+    <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+      <div className="flex flex-col justify-center px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)', borderColor: 'rgb(34, 72, 73)' }}>
+        <div className="flex justify-between items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
+          <div className="flex items-center gap-5">
+            <div className="text-5xl font-bold" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
+            <div className="flex gap-5 justify-between my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
+              <a href="/playtest_language" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</a>
+              <a href="/about" style={{ color: 'rgb(24, 37, 39)' }}>About</a>
+              <div>Contact us</div>
             </div>
           </div>
-          <div className="justify-center self-stretch px-7 py-2 text-white whitespace-nowrap border border-solid bg-sky-950 border-sky-950 rounded-[500px] max-md:px-5">
-            Login
+          <div className="flex items-center gap-5">
+            <div className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white' }}><a href="/playtest_language">{selectedContent.playMat}</a></div>
+            <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center px-16 py-20 w-full bg-white max-md:px-5 max-md:max-w-full">
-        <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
+      <div className="self-center mt-28 w-full max-w-[1300px] max-md:mt-10 max-md:max-w-full">
+        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+            <div className="flex flex-col grow px-5 pb-20 mt-1 max-md:mt-10 max-md:max-w-full">
+              <div className="text-6xl font-bold leading-[72px] max-md:max-w-full max-md:text-4xl max-md:leading-[53px]" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.promoteAwareness}</div>
+              <div className="mt-6 text-xl font-medium leading-8 max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.moreInclusive}</div>
+              <div className="flex gap-4 mt-8 text-base leading-6 max-md:flex-wrap">
+                <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(34, 72, 73)' }}>Enter your name or nickname...</div>
+                <div className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white' }}><a href="/playtest_language">{selectedContent.playNow}</a></div>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/663fc4ec1501c93fa5331be64d2c83f53a61e34cb417c1969ea49a40305939aa?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+              className="grow w-full aspect-[1.3] max-md:mt-10 max-md:max-w-full"
+            />
+          </div>
+        </div>
+      </div>
+      <div id="about" className="flex flex-col items-start px-16 py-20 mt-20 w-full text-lg leading-7 max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(34, 72, 73)' }}>
+        <div className="text-5xl font-bold leading-[57.6px] max-md:max-w-full max-md:text-4xl" style={{ color: 'white' }}>What is MAT?</div>
+        <div className="mt-6 font-medium max-md:max-w-full" style={{ color: 'white' }}>
+          MAT is a Memory Association Test, to promote awareness of gender biases among teachers through an engaging and interactive memory game. By presenting teachers with descriptions of children, while concealing the associated genders, MAT prompts reflection on the unconscious associations individuals may hold between gender and various characteristics or attributes.
+        </div>
+        <div className="mt-9 max-md:max-w-full" style={{ color: 'white' }}>
+          Test your memory and challenge gender biases.
+        </div>
+        <div className="flex gap-4 pr-20 mt-4 text-base leading-6 max-md:flex-wrap max-md:pr-5">
+          <div className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'gray-800' }}><a href="/playtest_language">{selectedContent.playNow}</a></div>
+          <div className="flex gap-2 justify-center my-auto" style={{ color: 'white' }}>
+            <div className="underline">Learn More</div>
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/e944f5fe055f1dea958cec7ef0bcbce7e91b6b3def12a373874dc6cd95ecaf45?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+              className="shrink-0 w-6 aspect-square"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="self-center mt-24 w-full max-w-[1306px] max-md:mt-10 max-md:max-w-full">
+        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/bebbfe47e3db54ff00a27e455f9aacf6fe43b4a860bb00171014825a5d31a1e0?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+              className="w-full aspect-[1.3] max-md:mt-10 max-md:max-w-full"
+            />
+          </div>
+          <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+            <div className="flex flex-col grow px-5 py-px max-md:mt-10 max-md:max-w-full">
+              <div className="text-base font-semibold leading-6 text-center max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
+                Gender Bias Memory Game
+              </div>
+              <div className="mt-4 text-5xl font-bold leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]" style={{ color: 'rgb(24, 37, 39)' }}>
+                {selectedContent.promoteAwareness}
+              </div>
+              <div className="mt-6 text-lg leading-7 max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
+                {selectedContent.moreInclusive}
+              </div>
+              <div className="pt-2 mt-8 max-md:max-w-full">
+                <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                  <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                    <div className="flex flex-col max-md:mt-8" style={{ color: 'rgb(24, 37, 39)' }}>
+                      <div className="text-xl font-bold leading-7">How it Works</div>
+                      <div className="mt-4 text-base leading-6">Teachers are presented with descriptions of children without revealing their associated genders.</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                    <div className="flex flex-col grow max-md:mt-8" style={{ color: 'rgb(24, 37, 39)' }}>
+                      <div className="text-xl font-bold leading-7">Challenge Your Assumptions</div>
+                      <div className="mt-4 text-base leading-6">Reflect on the unconscious associations you may hold between gender and various characteristics or attributes.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="justify-center self-start px-8 py-3 mt-7 text-base font-semibold leading-6 rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
+                Learn more
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col justify-center px-16 py-20 mt-20 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(34, 72, 73)' }}>
+        <div className="px-px mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
+          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col grow max-md:mt-10">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/bef98c917f1c01fb9d1e56f2c5d5c978d8904a19f1721924637301298b32e6f0?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                  className="self-center w-12 aspect-square"
+                />
+                <div className="mt-6 text-4xl font-bold leading-10 text-center" style={{ color: 'white' }}>{selectedContent.memoryTest}</div>
+                <div className="mt-6 text-lg font-medium leading-7 text-center" style={{ color: 'white' }}>
+                  Play an engaging and interactive memory game to challenge your gender biases.
+                </div>
+                <div className="flex gap-5 justify-between items-start self-center pt-4 mt-6 text-base leading-6">
+                  <a href="/playtest_language" className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</a>
+                  <div className="flex gap-2 justify-center mt-3 font-medium" style={{ color: 'white' }}>
+                    <div className="underline">Learn More</div>
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/fc32a6ad1122ace1237369eb8378326e0f36cf8ee0dabd793625558c408fe816?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                      className="shrink-0 w-6 aspect-square"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col pb-8 font-medium max-md:mt-10" style={{ color: 'white' }}>
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/3b2c3480596276a71a99a5d97a9aa019b0e397cb4b50d391fe7d9959ae8b204a?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                  className="self-center w-12 aspect-square"
+                />
+                <div className="mt-6 text-4xl font-bold leading-10 text-center">{selectedContent.promoteAwareness}</div>
+                <div className="mt-6 text-lg leading-7 text-center">{selectedContent.moreInclusive}</div>
+                <div className="flex gap-2 justify-center self-center mt-7 text-base leading-6">
+                  <div className="underline">About Gender Bias</div>
+                  <img
+                    loading="lazy"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/94a330ae7d679f3f938a6856ff743704837b4a9d7703ac3185fd7d5c3183a6a9?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                    className="shrink-0 w-6 aspect-square"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col max-md:mt-10">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/19715051c7a38d6ea2df9015bda4740e643fd793591620b39b8e3aa2c3486bb9?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                  className="self-center w-12 aspect-square"
+                />
+                <div className="mt-6 text-4xl font-bold leading-10 text-center" style={{ color: 'white' }}>{selectedContent.joinMovement}</div>
+                <div className="mt-6 text-lg font-medium leading-7 text-center" style={{ color: 'white' }}>
+                  Help spread awareness and create a more inclusive environment.
+                </div>
+                <div className="flex gap-5 justify-between self-center pt-4 mt-6 text-base leading-6">
+                  <div className="justify-center px-8 py-3 font-semibold border border-solid rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', borderColor: 'rgb(212, 114, 62)' }}>Get Involved</div>
+                  <div className="flex gap-2 justify-center self-start mt-3 font-medium" style={{ color: 'white' }}>
+                    <div className="underline">Contact Us</div>
+                    <img
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e30ced968d3ea7ae79476b5fdb5c5560017144de2b684316da4f77daa13f1f1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                      className="shrink-0 w-6 aspect-square"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col px-16 py-20 mt-12 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+        <div className="py-1 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col self-stretch my-auto leading-[150%] max-md:mt-10 max-md:max-w-full">
-                <div className="text-6xl font-bold leading-[67px] text-sky-950 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-                  Promote Gender Bias Awareness
+              <div className="flex flex-col text-base leading-6 max-md:mt-10 max-md:max-w-full">
+                <div className="text-5xl font-bold max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
+                <div className="mt-3" style={{ color: 'rgb(24, 37, 39)' }}>Memory Association Test</div>
+                <div className="flex gap-4 mt-3 max-md:flex-wrap">
+                  <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(24, 37, 39)' }}>Enter your name</div>
+                  <div className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}><a href="/playtest_language">{selectedContent.playNow}</a></div>
                 </div>
-                <div className="mt-6 text-lg text-sky-950 max-md:max-w-full">
-                  Play the Memory Association Test
-                </div>
-                <div className="flex gap-4 mt-10 text-base max-md:flex-wrap">
-                  <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid border-sky-950 text-neutral-600">
-                    Enter your name
-                  </div>
-                  <div className="justify-center px-8 py-3 text-white border border-solid bg-sky-950 border-sky-950 rounded-[500px] max-md:px-5">
-                    Start Game
-                  </div>
-                </div>
-                <div className="mt-4 text-xs text-sky-950 max-md:max-w-full">
-                  Challenge your gender biases
+                <div className="mt-4 text-xs max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
+                  By playing this game you're confirming that you agree with our Terms and Conditions.
                 </div>
               </div>
             </div>
             <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-              <img
-                loading="lazy"
-                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/189b2c4a7d2d20739d3ce366596a4a34b53ebcad794affd3c08089ade4c5ffe1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col justify-center px-16 py-20 w-full max-md:px-5 max-md:max-w-full">
-        <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
-          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-            <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col text-base leading-6 text-white max-md:mt-10">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e421067f58b4c075457c1a119f5bbec7a4c4375c97e3fd2ebc05fbc8f43318af?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                  className="self-center w-12 aspect-square"
-                />
-                <div className="mt-6 text-3xl font-bold leading-10 text-center">
-                  Memory Game
-                </div>
-                <div className="mt-6 text-center">
-                  Play an engaging and interactive memory game
-                </div>
-                <div className="flex gap-5 justify-between items-start self-center pt-4 mt-6">
-                  <div className="justify-center px-8 py-3 border border-white border-solid rounded-[500px] max-md:px-5">
-                    Start Game
-                  </div>
-                  <div className="flex gap-2 justify-center mt-3">
-                    <div className="underline">Learn More</div>
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/98d349ecca13877bd628de8cf6e0b14b6240ee4dde60b524527391ea5f6eaf90?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                      className="shrink-0 w-6 aspect-square"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col grow text-base text-white max-md:mt-10">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c9cb8b5f9680554715c33fbf723423e2c1eb9b670abd91937822c3922a159ff?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                  className="self-center w-12 aspect-square"
-                />
-                <div className="mt-6 text-3xl font-bold leading-10 text-center">
-                  Promote Gender Bias Awareness
-                </div>
-                <div className="mt-6 leading-6 text-center">
-                  Reflect on unconscious associations between gender and
-                  attributes
-                </div>
-                <div className="flex gap-5 justify-between items-start self-center pt-4 mt-6 leading-[150%]">
-                  <div className="justify-center px-8 py-3 border border-white border-solid rounded-[500px] max-md:px-5">
-                    Play Now
-                  </div>
-                  <div className="flex gap-2 justify-center mt-3">
-                    <div className="underline">About Gender Bias</div>
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b9e43bb4b047257e048ca77df8d46afe7b6e796faabeb14bf2354f5442914773?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                      className="shrink-0 w-6 aspect-square"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col text-base text-white max-md:mt-10">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/ee5d0c7a421a51aae2901454c4773e20799b3350624461774fbf70417fabd1fb?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                  className="self-center w-12 aspect-square"
-                />
-                <div className="mt-6 text-3xl font-bold leading-10 text-center">
-                  Join the Movement
-                </div>
-                <div className="mt-6 leading-6 text-center">
-                  Help spread awareness and create a more inclusive environment
-                </div>
-                <div className="flex gap-5 justify-between items-start self-center pt-4 mt-6 leading-[150%]">
-                  <div className="justify-center px-8 py-3 border border-white border-solid rounded-[500px] max-md:px-5">
-                    Get Involved
-                  </div>
-                  <div className="flex gap-2 justify-center mt-3">
-                    <div className="underline">Contact Us</div>
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e857a28be58f26fc03a5de3c73d414ab1cdf066e4ae404b1d4083b8f9bb9379e?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                      className="shrink-0 w-6 aspect-square"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col items-start px-16 py-20 mt-12 w-full bg-sky-950 bg-opacity-50 leading-[150%] max-md:px-5 max-md:mt-10 max-md:max-w-full">
-        <div className="mt-8 text-5xl font-bold text-white leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-          Play the Memory Game
-        </div>
-        <div className="mt-6 text-lg text-white max-md:max-w-full">
-          Test your memory and challenge gender biases
-        </div>
-        <div className="flex gap-4 mt-8 text-base max-md:flex-wrap">
-          <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid border-sky-950 text-neutral-600">
-            Enter your email
-          </div>
-          <div className="justify-center px-8 py-3 text-white border border-solid bg-sky-950 border-sky-950 rounded-[500px] max-md:px-5">
-            Play Now
-          </div>
-        </div>
-        <div className="mt-4 mb-2.5 text-xs text-white max-md:max-w-full">
-          By playing this game you're confirming that you agree with our Terms
-          and Conditions.
-        </div>
-      </div>
-      <div className="flex flex-col px-16 py-20 mt-24 w-full bg-white max-md:px-5 max-md:mt-10 max-md:max-w-full">
-        <div className="pb-2 max-md:max-w-full">
-          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-            <div className="flex flex-col w-[44%] max-md:ml-0 max-md:w-full">
-              <div className="flex flex-col text-base leading-6 max-md:mt-10 max-md:max-w-full">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/486da21a624178181a90dfb88db80ec26cf2f3d34284afbf5fc6123107922eb0?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                  className="aspect-[2.33] w-[63px]"
-                />
-                <div className="mt-6 text-sky-950 max-md:max-w-full">
-                  Gender Bias Memory Game
-                </div>
-                <div className="flex gap-4 mt-6 max-md:flex-wrap">
-                  <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid border-sky-950 text-neutral-600">
-                    Enter your email
-                  </div>
-                  <div className="justify-center px-8 py-3 border border-solid border-sky-950 rounded-[500px] text-sky-950 max-md:px-5">
-                    Play Now
-                  </div>
-                </div>
-                <div className="mt-4 text-xs text-sky-950 max-md:max-w-full">
-                  About Gender Bias Memory Game
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col ml-5 w-[56%] max-md:ml-0 max-md:w-full">
-              <div className="grow max-md:mt-10 max-md:max-w-full">
+              <div className="grow justify-end max-md:mt-10 max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                  <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col pb-2 text-sm leading-5 text-sky-950 max-md:mt-10">
-                      <div className="text-base font-semibold">Explore</div>
-                      <div className="mt-6">How to Play</div>
-                      <div className="mt-4">Game Rules</div>
-                      <div className="mt-4">Leaderboard</div>
-                      <div className="mt-4">FAQs</div>
+                  <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
+                    <div className="flex flex-col grow pb-3.5 text-sm leading-5 max-md:mt-10" style={{ color: 'rgb(24, 37, 39)' }}>
+                      <div className="text-base font-semibold leading-6">Explore</div>
+                      <div className="mt-4"><a href="/playtest_language">{selectedContent.playMat}</a></div>
+                      <div className="mt-4">About</div>
                       <div className="mt-4">Contact Us</div>
                     </div>
                   </div>
-                  <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col pb-2 text-sm leading-5 text-sky-950 max-md:mt-10">
-                      <div className="text-base font-semibold">Follow Us</div>
-                      <div className="mt-6">Facebook</div>
-                      <div className="mt-4">Instagram</div>
-                      <div className="mt-4">YouTube</div>
-                      <div className="mt-4">LinkedIn</div>
-                      <div className="mt-4">Twitter</div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col grow text-sm leading-5 text-sky-950 max-md:mt-10">
+                  <div className="flex flex-col ml-5 w-[45%] max-md:ml-0 max-md:w-full">
+                    <div className="flex flex-col grow text-sm leading-5 max-md:mt-10" style={{ color: 'rgb(24, 37, 39)' }}>
                       <div className="text-base font-semibold">Follow Us</div>
                       <div className="flex gap-3 py-2 mt-4 whitespace-nowrap">
                         <img
                           loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/85784e87292ae46fe895afe4ad0817870d7f8a3032dd5d1b65002a78c6aca15b?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/d71d75b3d00ccec9613c8fe997ece1b1b710400c49d07683f1face222eacf1f9?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
                           className="shrink-0 w-6 aspect-square"
                         />
                         <div>Facebook</div>
@@ -240,7 +241,7 @@ function HomePage() {
                       <div className="flex gap-3 py-2 whitespace-nowrap">
                         <img
                           loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/6d3cbae24bf5832f0029e27bc3fcbba72fc6f49b5f1d8fae54d9a3241d7d0681?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/20b5e880895c4a650c3a34baa96f0e3e182ef11e4819ea5f33eb6b24510cafce?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
                           className="shrink-0 w-6 aspect-square"
                         />
                         <div>Instagram</div>
@@ -248,7 +249,7 @@ function HomePage() {
                       <div className="flex gap-3 py-2 whitespace-nowrap">
                         <img
                           loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/882ade740d006c853ec7f7f017c06ccafca9116d9442243e45bed3110e635df0?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/5c2601de0a7e37eccae762786165a7cff234fe3fc4de1caf5b4c2ac372111d7f?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
                           className="shrink-0 w-6 aspect-square"
                         />
                         <div>X</div>
@@ -256,18 +257,10 @@ function HomePage() {
                       <div className="flex gap-3 py-2 whitespace-nowrap">
                         <img
                           loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/7556a6259af80ff25f18b8f6ec3452d24e06f5a1b7c07cc6af3d1e3196cdb2ba?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c6c40bf1434f5eaef011110763cd55fc6cff416c7e232222f0b4b955f75e3d16?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
                           className="shrink-0 w-6 aspect-square"
                         />
                         <div>LinkedIn</div>
-                      </div>
-                      <div className="flex gap-3 py-2 whitespace-nowrap">
-                        <img
-                          loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/7bd782612781ef3722026c44895f24ffdeaddd207ff77f7ef15f2920e3c6db8f?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
-                          className="shrink-0 w-6 aspect-square"
-                        />
-                        <div>Youtube</div>
                       </div>
                     </div>
                   </div>
@@ -276,8 +269,8 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className="shrink-0 mt-20 h-px bg-sky-950 max-md:mt-10 max-md:max-w-full" />
-        <div className="flex gap-5 justify-between mt-8 w-full text-sm leading-5 text-sky-950 max-md:flex-wrap max-md:max-w-full">
+        <div className="shrink-0 mt-10 h-px max-md:max-w-full" style={{ backgroundColor: 'rgb(24, 37, 39)' }} />
+        <div className="flex gap-5 justify-between px-px mt-8 w-full text-sm leading-5 max-md:flex-wrap max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
           <div>© 2022 Gender Bias Memory Game. All rights reserved.</div>
           <div className="flex gap-5 justify-between font-medium">
             <div className="underline">Privacy Policy</div>
@@ -290,4 +283,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Homepage;
