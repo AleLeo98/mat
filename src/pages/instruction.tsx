@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import LanguageSelector from '../components/LanguageSelector'; // Ensure the path is correct
 import { useLanguage } from '../context/LanguageContext'; // Ensure the path is correct
 
-const PlaytestLanguage: React.FC = () => {
+function InstructionPage() {
   const { selectedLanguage, setSelectedLanguage } = useLanguage();
   const [isConsentChecked, setIsConsentChecked] = useState(false);
   const router = useRouter();
@@ -13,14 +13,19 @@ const PlaytestLanguage: React.FC = () => {
       playMat: 'Play MAT',
       about: 'About',
       contactUs: 'Contact us',
+      demographicQuestions: 'Demographic Questions',
+      fillDemographicQuestions: 'Please fill the demographic questions below.',
+      answersSavedAnonymously: 'Your answers will be saved anonymously.',
       enterName: 'Enter your name',
       playNow: 'Play now',
-      objective: 'Objective',
-      objectiveDescription: 'The purpose of the study is to test an online application to improve the design of reflection-centered technologies. The included memory self-reflection test is educational, not diagnostic, and aims to encourage awareness of one\'s memory, without assessing its performance. Because memory is a broad concept, the test does not explore every aspect of it, and medical advice is recommended for memory problems. If you decide to participate, keep in mind that the results may not exactly match your personal perceptions.',
-      consent: 'Consent',
-      consentDescription: 'You are cordially invited to participate in a research study conducted by Irene Zanardi and Monica Landoni of the University of Lugano (USI), together with student Alessio Leoncini. If you agree to participate, you will be asked to use a web platform and fill out a questionnaire. The risks associated with participating in this study are minimal and center around the sensitive topic of implicit associations. In addition to contributing to research, the main benefit of the activity may be personal growth and reflection. Your responses will be anonymous. Please do not include personal information in the questionnaire. All data collected during the study will be kept strictly confidential. The data will be stored securely and only the research team will have access to it. Participation in this study is entirely voluntary, and you have the right to withdraw at any time without consequence.',
-      contact: 'For any questions or concerns about the study, you can contact Alessio Leoncini at leoncaa@usi.ch.',
-      readConsent: 'I have read and understood the consent.',
+      reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.',
+      instructions: 'Instructions',
+      part1: 'Part 1: Memorization',
+      part1Description: 'During this part of the test, you will be shown cards that describe children. Your goal is to memorize as many details about each child as possible. Once you feel confident that you have memorized all the information, you may proceed to the next child. Please note that you are not allowed to take any notes during this part of the test, as the purpose is to test your memory only.',
+      part2: 'Part 2: Recall',
+      part2Description: 'After you have completed the memorization part of the test, you will be asked to recall all the information you have memorized about each child. You will need to provide as much detail as possible.',
+      videoInstructions: 'Video Instructions',
+      consentRead: 'I have read and understood the consent.',
       continue: 'Continue',
       termsConfirmation: 'By playing this game you\'re confirming that you agree with our Terms and Conditions.',
       explore: 'Explore',
@@ -34,20 +39,24 @@ const PlaytestLanguage: React.FC = () => {
       privacyPolicy: 'Privacy Policy',
       termsOfService: 'Terms of Service',
       cookiesSettings: 'Cookies Settings',
-      reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.'
     },
     IT: {
       playMat: 'Gioca a MAT',
       about: 'Chi siamo',
       contactUs: 'Contattaci',
+      demographicQuestions: 'Domande Demografiche',
+      fillDemographicQuestions: 'Si prega di compilare le domande demografiche di seguito.',
+      answersSavedAnonymously: 'Le tue risposte saranno salvate in modo anonimo.',
       enterName: 'Inserisci il tuo nome',
       playNow: 'Gioca ora',
-      objective: 'Obiettivo',
-      objectiveDescription: 'Lo scopo dello studio è testare un\'applicazione online per migliorare la progettazione di tecnologie incentrate sulla riflessione. Il test di autoriflessione della memoria incluso è educativo, non diagnostico, e mira a incoraggiare la consapevolezza della propria memoria, senza valutarne le prestazioni. Poiché la memoria è un concetto ampio, il test non esplora ogni suo aspetto, e si raccomanda un consiglio medico per problemi di memoria. Se decidi di partecipare, tieni presente che i risultati potrebbero non corrispondere esattamente alle tue percezioni personali.',
-      consent: 'Consenso',
-      consentDescription: 'Sei cordialmente invitato a partecipare a uno studio di ricerca condotto da Irene Zanardi e Monica Landoni dell\'Università di Lugano (USI), insieme allo studente Alessio Leoncini. Se accetti di partecipare, ti verrà chiesto di utilizzare una piattaforma web e compilare un questionario. I rischi associati alla partecipazione a questo studio sono minimi e ruotano attorno al tema sensibile delle associazioni implicite. Oltre a contribuire alla ricerca, il principale beneficio dell\'attività potrebbe essere la crescita personale e la riflessione. Le tue risposte saranno anonime. Si prega di non includere informazioni personali nel questionario. Tutti i dati raccolti durante lo studio saranno mantenuti strettamente confidenziali. I dati saranno conservati in modo sicuro e solo il team di ricerca avrà accesso ad essi. La partecipazione a questo studio è completamente volontaria e hai il diritto di ritirarti in qualsiasi momento senza conseguenze.',
-      contact: 'Per qualsiasi domanda o dubbio sullo studio, puoi contattare Alessio Leoncini all\'indirizzo leoncaa@usi.ch.',
-      readConsent: 'Ho letto e compreso il consenso.',
+      reflectOnAssociations: 'Gioca a MAT, il Test di Associazione di Memoria, per riflettere sulle associazioni inconsce.',
+      instructions: 'Istruzioni',
+      part1: 'Parte 1: Memorizzazione',
+      part1Description: 'Durante questa parte del test, ti verranno mostrate delle carte che descrivono i bambini. Il tuo obiettivo è memorizzare quanti più dettagli possibili su ogni bambino. Una volta che ti senti sicuro di aver memorizzato tutte le informazioni, puoi procedere al bambino successivo. Si prega di notare che non è consentito prendere appunti durante questa parte del test, poiché lo scopo è testare solo la tua memoria.',
+      part2: 'Parte 2: Richiamo',
+      part2Description: 'Dopo aver completato la parte di memorizzazione del test, ti verrà chiesto di richiamare tutte le informazioni che hai memorizzato su ogni bambino. Dovrai fornire quanti più dettagli possibili.',
+      videoInstructions: 'Istruzioni Video',
+      consentRead: 'Ho letto e compreso il consenso.',
       continue: 'Continua',
       termsConfirmation: 'Giocando a questo gioco confermi di accettare i nostri Termini e Condizioni.',
       explore: 'Esplora',
@@ -61,7 +70,6 @@ const PlaytestLanguage: React.FC = () => {
       privacyPolicy: 'Politica sulla privacy',
       termsOfService: 'Termini di servizio',
       cookiesSettings: 'Impostazioni dei cookie',
-      reflectOnAssociations: 'Gioca a MAT, il Test di Associazione della Memoria, per riflettere sulle associazioni inconsce.'
     }
   };
 
@@ -93,55 +101,48 @@ const PlaytestLanguage: React.FC = () => {
       </div>
       <div className="flex flex-col self-center px-5 mt-24 w-full font-bold text-gray-800 max-w-[1240px] max-md:mt-10 max-md:max-w-full">
         <div className="self-center text-6xl leading-[90px] max-md:text-4xl">
-          {selectedLanguage === 'IT' ? (
-            <>
-              <span className="text-gray-800">Gioca a </span>
-              <span className="text-6xl text-gray-800 leading-[96px]">MAT</span>
-            </>
-          ) : (
-            <>
-              <span className="text-gray-800">Play </span>
-              <span className="text-6xl text-gray-800 leading-[96px]">MAT</span>
-            </>
-          )}
+          <span className="text-gray-800">{selectedContent.playMat.split(' ')[0]} </span>
+          <span className="text-6xl text-gray-800 leading-[96px]">{selectedContent.playMat.split(' ')[1]} {selectedContent.playMat.split(' ')[2]}</span>
         </div>
         <div className="self-center mt-8 text-xl font-medium leading-8" style={{ color: 'rgb(24, 37, 39)' }}>
           {selectedContent.reflectOnAssociations}
         </div>
         <div className="flex flex-col py-16 mt-16 rounded-[30px] max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(34, 72, 73)' }}>
           <div className="self-center text-5xl leading-[57.6px] max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(251, 238, 239)' }}>
-            Preliminary Information
+            {selectedContent.instructions}
           </div>
           <div className="flex flex-col px-16 mt-16 mb-5 text-lg leading-7 max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ color: 'rgb(251, 238, 239)' }}>
             <div className="font-medium leading-7 max-md:max-w-full">
-              <span className="font-bold">{selectedContent.objective}</span>: {selectedContent.objectiveDescription}
+              <span className="font-bold">{selectedContent.part1}</span>: {selectedContent.part1Description}
             </div>
             <div className="mt-10 leading-7 max-md:max-w-full">
-              {selectedContent.consent}:{" "}
-              <span className="font-medium">
-                {selectedContent.consentDescription}
-              </span>
+              <span className="font-bold">{selectedContent.part2}</span>: {selectedContent.part2Description}
             </div>
             <div className="mt-12 max-md:mt-10 max-md:max-w-full">
-              <span className="font-medium">
-                {selectedContent.contact}
-              </span>
+              <span className="font-bold">{selectedContent.videoInstructions}</span>: {selectedContent.videoInstructions}
+            </div>
+            <div className="flex justify-center mt-8">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
             <div className="flex gap-4 self-start mt-6 font-semibold">
-              <div
-                className={`shrink-0 rounded border border-solid h-[30px] w-[30px] cursor-pointer ${isConsentChecked ? 'bg-green-500' : 'bg-red-50'}`}
-                style={{ borderColor: 'rgb(34, 72, 73)' }}
-                onClick={() => setIsConsentChecked(!isConsentChecked)}
-              />
+              <div className={`shrink-0 rounded border border-solid h-[30px] w-[30px] cursor-pointer ${isConsentChecked ? 'bg-green-500' : 'bg-red-50'}`} style={{ borderColor: 'rgb(34, 72, 73)' }} onClick={() => setIsConsentChecked(!isConsentChecked)} />
               <div className="flex-auto my-auto">
-                {selectedContent.readConsent}
+                {selectedContent.consentRead}
               </div>
             </div>
             <button
               className="justify-center self-start px-8 py-3 mt-9 font-semibold whitespace-nowrap rounded-[500px] max-md:px-5"
               style={{ backgroundColor: isConsentChecked ? 'rgb(212, 114, 62)' : 'rgb(212, 114, 62, 0.5)', color: 'rgb(24, 37, 39)' }}
               disabled={!isConsentChecked}
-              onClick={() => router.push('/demographicquestions')}
+              onClick={() => router.push('/memcard')}
             >
               {selectedContent.continue}
             </button>
@@ -244,4 +245,4 @@ const PlaytestLanguage: React.FC = () => {
   );
 }
 
-export default PlaytestLanguage;
+export default InstructionPage;

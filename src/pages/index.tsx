@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import LanguageSelector from '../components/LanguageSelector'; // Adjust the path based on your directory structure
 
 const Homepage: React.FC = () => {

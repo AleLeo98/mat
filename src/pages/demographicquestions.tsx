@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router'; // Import useRouter from next/router
 import LanguageSelector from '../components/LanguageSelector'; // Ensure the path is correct
 import { useLanguage } from '../context/LanguageContext'; // Ensure the path is correct
 
@@ -8,6 +9,7 @@ function DemographicQuestions() {
   const [selectedEducation, setSelectedEducation] = useState('');
   const [selectedExperience, setSelectedExperience] = useState('');
   const [selectedAge, setSelectedAge] = useState('');
+  const router = useRouter(); // Initialize useRouter
 
   const content = {
     EN: {
@@ -108,6 +110,12 @@ function DemographicQuestions() {
 
   const isFormValid = selectedGender && selectedEducation && selectedExperience && selectedAge;
 
+  const handleConfirmClick = () => {
+    if (isFormValid) {
+      router.push('/instruction'); // Navigate to instruction page
+    }
+  };
+
   return (
     <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
       <div className="flex flex-col justify-center px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full" style={{ borderColor: 'rgb(34, 72, 73)' }}>
@@ -135,7 +143,7 @@ function DemographicQuestions() {
       <div className="flex flex-col self-center px-5 mt-24 w-full font-bold text-gray-800 leading-[150%] max-w-[1240px] max-md:mt-10 max-md:max-w-full">
         <div className="self-center text-6xl max-md:text-4xl">
           <span className="text-gray-800">{selectedContent.playMat.split(' ')[0]} </span>
-          <span className="text-6xl text-gray-800 leading-[96px]">{selectedContent.playMat.split(' ')[1]}</span>
+          <span className="text-6xl text-gray-800 leading-[96px]">{selectedContent.playMat.split(' ')[1]} {selectedContent.playMat.split(' ')[2]} </span>
         </div>
         <div className="self-center mt-8 text-xl font-medium text-slate-950 max-md:max-w-full">
           {selectedContent.reflectOnAssociations}
@@ -232,6 +240,7 @@ function DemographicQuestions() {
                 className="justify-center self-start px-8 py-3 mt-8 font-semibold text-gray-800 whitespace-nowrap rounded-[500px] max-md:px-5 max-md:mt-10"
                 style={{ backgroundColor: isFormValid ? 'rgb(212, 114, 62)' : 'rgb(212, 114, 62, 0.5)' }}
                 disabled={!isFormValid}
+                onClick={handleConfirmClick} // Add click handler
               >
                 {selectedContent.confirm}
               </button>
