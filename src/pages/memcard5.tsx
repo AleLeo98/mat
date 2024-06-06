@@ -1,8 +1,11 @@
 import * as React from "react";
 import LanguageSelector from '../components/LanguageSelector'; // Ensure the path is correct
 import { useLanguage } from '../context/LanguageContext'; // Ensure the path is correct
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFemale, faCalculator, faPuzzlePiece, faComputer } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
 
-function MemCard() {
+function MemCard5() {
   const { selectedLanguage, setSelectedLanguage } = useLanguage();
 
   const content = {
@@ -12,10 +15,10 @@ function MemCard() {
       contactUs: 'Contact us',
       memorization: 'Memorization',
       memorizationInstruction: 'Memorize the information about the child below. When you are ready, click the button to proceed.',
-      child: 'Child 1',
+      child: 'Child 5',
       aboutMe: 'About me.',
       interests: 'Interests',
-      next: 'NEXT',
+      next: 'Next',
       termsConfirmation: "By playing this game you're confirming that you agree with our Terms and Conditions.",
       enterName: 'Enter your name',
       playNow: 'Play now',
@@ -33,13 +36,13 @@ function MemCard() {
       memoryAssociationTest: 'Memory Association Test',
       reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.',
       childDetails: [
-        "I struggle to control myself. I get into fights during football matches.",
-        "I am eight years old.",
-        "Football",
-        "Video games",
-        "Science"
+        "I have a well-defined value system. I have a strong personality. I am always attentive to others.",
+        "I am a girl.",
+        "Math",
+        "Toys",
+        "Computer"
       ],
-      cardsToGo: '5 cards to go'
+      cardsToGo: '1 cards to go'
     },
     IT: {
       playMat: 'Gioca a MAT',
@@ -47,10 +50,10 @@ function MemCard() {
       contactUs: 'Contattaci',
       memorization: 'Memorizzazione',
       memorizationInstruction: 'Memorizza le informazioni sul bambino qui sotto. Quando sei pronto, clicca il pulsante per procedere.',
-      child: 'Carta 1',
+      child: 'Carta 5',
       aboutMe: 'Su di me.',
       interests: 'Interessi',
-      next: 'PROSSIMO',
+      next: 'Prossimo',
       termsConfirmation: "Giocando a questo gioco confermi di accettare i nostri Termini e Condizioni.",
       enterName: 'Inserisci il tuo nome',
       playNow: 'Gioca ora',
@@ -68,14 +71,20 @@ function MemCard() {
       memoryAssociationTest: 'Test di Associazione di Memoria',
       reflectOnAssociations: 'Gioca a MAT, il Test di Associazione della Memoria, per riflettere sulle associazioni inconsce.',
       childDetails: [
-        "Ho difficoltà a controllarmi. Litigo con gli altri durante le partite di calcio.",
-        "Ho otto anni.",
-        "Calcio",
-        "Video giochi",
-        "Scienza"
+        "Ho un sistema di valori ben definito. Ho una forte personalità. Ho molta attenzione verso gli altri.",
+        "Sono una ragazza.",
+        "Matematica",
+        "Giocattoli",
+        "Computer"
       ],
-      cardsToGo: '5 carte rimanenti'
+      cardsToGo: '1 carte rimanenti'
     }
+  };
+
+  const router = useRouter();
+
+  const handleNextClick = () => {
+    router.push('/memcard6');
   };
 
   const selectedContent = content[selectedLanguage];
@@ -142,33 +151,47 @@ function MemCard() {
                     <div className="mt-8 font-bold text-black">{selectedContent.aboutMe}</div>
                     <div className="flex gap-3 mt-3.5">
                       <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        8
+                        <FontAwesomeIcon icon={faFemale} />
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[1]}
                       </div>
                     </div>
                     <div className="mt-6 font-bold text-black">{selectedContent.interests}</div>
-                    {selectedContent.childDetails.slice(2).map((interest, index) => (
-                      <div key={index} className="flex gap-3 mt-3.5">
-                        <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                          8
-                        </div>
-                        <div className="flex-auto my-auto font-medium text-gray-800">
-                          {interest}
-                        </div>
+                    <div className="flex gap-3 mt-3.5">
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
+                        <FontAwesomeIcon icon={faCalculator} />
                       </div>
-                    ))}
+                      <div className="flex-auto my-auto font-medium text-gray-800">
+                        {selectedContent.childDetails[2]}
+                      </div>
+                    </div>
+                    <div className="flex gap-3 mt-3.5">
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
+                        <FontAwesomeIcon icon={faPuzzlePiece} />
+                      </div>
+                      <div className="flex-auto my-auto font-medium text-gray-800">
+                        {selectedContent.childDetails[3]}
+                      </div>
+                    </div>
+                    <div className="flex gap-3 mt-3.5">
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
+                        <FontAwesomeIcon icon={faComputer} />
+                      </div>
+                      <div className="flex-auto my-auto font-medium text-gray-800">
+                        {selectedContent.childDetails[4]}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="justify-center self-end px-8 py-3 mt-2.5 text-lg font-semibold leading-7 text-gray-800 whitespace-nowrap bg-orange-400 rounded-[500px] max-md:px-6 cursor-pointer">
-              {selectedContent.next}
+            <div  onClick={handleNextClick} className="justify-center self-end px-8 py-3 mt-2.5 text-lg font-semibold leading-7 text-gray-800 whitespace-nowrap bg-orange-400 rounded-[500px] max-md:px-6 cursor-pointer"
+            >{selectedContent.next}
             </div>
           </div>
           <div className="flex flex-col justify-center items-start mt-7 bg-white max-md:pr-5 max-md:max-w-full">
-            <div className="shrink-0 h-3.5 bg-orange-400 w-[158px]" />
+            <div className="shrink-0 h-5 bg-orange-400 w-5/6" />
           </div>
         </div>
         <div className="self-start mt-4 ml-3 text-base font-medium leading-6 text-gray-800 max-md:max-w-full">
@@ -237,7 +260,7 @@ function MemCard() {
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/d3baabc822e405367a48a67a929730603883d9a079dd7fda39efcec660c65d69?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
                           className="shrink-0 w-6 aspect-square"
                         />
-                        <div>Twitter</div>
+                        <div>{selectedContent.twitter}</div>
                       </div>
                       <div className="flex gap-3 py-2 whitespace-nowrap">
                         <img
@@ -268,4 +291,4 @@ function MemCard() {
   );
 }
 
-export default MemCard;
+export default MemCard5;

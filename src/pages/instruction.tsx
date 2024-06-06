@@ -142,7 +142,7 @@ function InstructionPage() {
               className="justify-center self-start px-8 py-3 mt-9 font-semibold whitespace-nowrap rounded-[500px] max-md:px-5"
               style={{ backgroundColor: isConsentChecked ? 'rgb(212, 114, 62)' : 'rgb(212, 114, 62, 0.5)', color: 'rgb(24, 37, 39)' }}
               disabled={!isConsentChecked}
-              onClick={() => router.push('/memcard')}
+              onClick={() => router.push('/memcard1')}
             >
               {selectedContent.continue}
             </button>

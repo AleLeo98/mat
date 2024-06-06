@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-
 import LanguageSelector from '../components/LanguageSelector'; // Adjust the path based on your directory structure
 
 const Homepage: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<'EN' | 'IT'>('EN');
+  const router = useRouter();
 
   const content = {
     EN: {
@@ -84,13 +84,13 @@ const Homepage: React.FC = () => {
           <div className="flex items-center gap-5">
             <div className="text-5xl font-bold" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
             <div className="flex gap-5 justify-between my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
-              <a href="/playtest_language" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</a>
-              <a href="/about" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.about}</a>
-              <div>{selectedContent.contactUs}</div>
+              <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</div>
+              <div onClick={() => router.push('/about')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.about}</div>
+              <div style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.contactUs}</div>
             </div>
           </div>
           <div className="flex items-center gap-5">
-            <div className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white' }}><a href="/playtest_language">{selectedContent.playMat}</a></div>
+            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playMat}</div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
           </div>
         </div>
@@ -103,7 +103,7 @@ const Homepage: React.FC = () => {
               <div className="mt-6 text-xl font-medium leading-8 max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.moreInclusive}</div>
               <div className="flex gap-4 mt-8 text-base leading-6 max-md:flex-wrap">
                 <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(34, 72, 73)' }}>{selectedContent.enterName}</div>
-                <div className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white' }}><a href="/playtest_language">{selectedContent.playNow}</a></div>
+                <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playNow}</div>
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@ const Homepage: React.FC = () => {
           {selectedContent.testMemory}
         </div>
         <div className="flex gap-4 pr-20 mt-4 text-base leading-6 max-md:flex-wrap max-md:pr-5">
-          <div className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'gray-800' }}><a href="/playtest_language">{selectedContent.playNow}</a></div>
+          <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'gray-800', cursor: 'pointer' }}>{selectedContent.playNow}</div>
           <div className="flex gap-2 justify-center my-auto" style={{ color: 'white' }}>
             <div className="underline">{selectedContent.learnMore}</div>
             <img
@@ -172,7 +172,7 @@ const Homepage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="justify-center self-start px-8 py-3 mt-7 text-base font-semibold leading-6 rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
+              <div onClick={() => router.push('/playtest')} className="justify-center self-start px-8 py-3 mt-7 text-base font-semibold leading-6 rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
                 {selectedContent.learnMore}
               </div>
             </div>
@@ -194,7 +194,7 @@ const Homepage: React.FC = () => {
                   {selectedContent.memoryGamePrompt}
                 </div>
                 <div className="flex gap-5 justify-between items-start self-center pt-4 mt-6 text-base leading-6">
-                  <a href="/playtest_language" className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</a>
+                  <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>{selectedContent.playMat}</div>
                   <div className="flex gap-2 justify-center mt-3 font-medium" style={{ color: 'white' }}>
                     <div className="underline">{selectedContent.learnMore}</div>
                     <img
@@ -237,7 +237,7 @@ const Homepage: React.FC = () => {
                   {selectedContent.helpSpreadAwareness}
                 </div>
                 <div className="flex gap-5 justify-between self-center pt-4 mt-6 text-base leading-6">
-                  <div className="justify-center px-8 py-3 font-semibold border border-solid rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', borderColor: 'rgb(212, 114, 62)' }}>{selectedContent.getInvolved}</div>
+                  <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold border border-solid rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', borderColor: 'rgb(212, 114, 62)', cursor: 'pointer' }}>{selectedContent.getInvolved}</div>
                   <div className="flex gap-2 justify-center self-start mt-3 font-medium" style={{ color: 'white' }}>
                     <div className="underline">{selectedContent.contactUs}</div>
                     <img
@@ -251,7 +251,7 @@ const Homepage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
       <div className="flex flex-col px-16 py-20 mt-12 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
         <div className="py-1 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -261,7 +261,7 @@ const Homepage: React.FC = () => {
                 <div className="mt-3" style={{ color: 'rgb(24, 37, 39)' }}>Memory Association Test</div>
                 <div className="flex gap-4 mt-3 max-md:flex-wrap">
                   <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(24, 37, 39)' }}>{selectedContent.enterName}</div>
-                  <div className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}><a href="/playtest_language">{selectedContent.playNow}</a></div>
+                  <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>{selectedContent.playNow}</div>
                 </div>
                 <div className="mt-4 text-xs max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
                   {selectedContent.termsConfirmation}
@@ -274,9 +274,9 @@ const Homepage: React.FC = () => {
                   <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
                     <div className="flex flex-col grow pb-3.5 text-sm leading-5 max-md:mt-10" style={{ color: 'rgb(24, 37, 39)' }}>
                       <div className="text-base font-semibold leading-6">{selectedContent.explore}</div>
-                      <div className="mt-4"><a href="/playtest_language">{selectedContent.playMat}</a></div>
-                      <div className="mt-4">{selectedContent.about}</div>
-                      <div className="mt-4">{selectedContent.contactUs}</div>
+                      <div className="mt-4" onClick={() => router.push('/playtest_language')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                      <div className="mt-4" style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
+                      <div className="mt-4" style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>
                   </div>
                   <div className="flex flex-col ml-5 w-[45%] max-md:ml-0 max-md:w-full">
