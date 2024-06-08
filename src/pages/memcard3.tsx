@@ -203,7 +203,7 @@ const handleNextClick = () => {
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
               <div className="flex flex-col leading-[150%] max-md:mt-10 max-md:max-w-full">
-                <div className="text-5xl font-bold text-orange-400 max-md:max-w-full max-md:text-4xl">
+                <div className="text-5xl font-bold max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(212, 114, 62)' }}>
                   MAT
                 </div>
                 <div className="mt-3 text-base text-gray-800 max-md:max-w-full">
@@ -213,7 +213,7 @@ const handleNextClick = () => {
                   <div className="flex-1 justify-center self-start p-3 text-base bg-white rounded-lg border border-gray-800 border-solid text-neutral-600">
                     {selectedContent.enterName}
                   </div>
-                  <div className="justify-center px-8 py-3 text-lg font-semibold text-gray-800 bg-orange-400 rounded-[500px] max-md:px-5">
+                  <div className="justify-center px-8 py-3 text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
                     {selectedContent.playNow}
                   </div>
                 </div>

@@ -1,14 +1,23 @@
-import * as React from "react";
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext'; // Ensure the path is correct
 import LanguageSelector from '../components/LanguageSelector'; // Ensure the path is correct
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFutbol, faGamepad, faFlask, faMusic, faBook, faFemale, faMale, faComputer, faCalculator, faPuzzlePiece, faBicycle, faPaintBrush, faRunning} from '@fortawesome/free-solid-svg-icons';
+import { 
+  faFutbol, faGamepad, faFlask, faMusic, faBook, 
+  faFemale, faMale, faComputer, faCalculator, faPuzzlePiece, 
+  faBicycle, faPaintBrush, faRunning, faSlash 
+} from '@fortawesome/free-solid-svg-icons';
 import Icon from '@mdi/react';
 import { mdiHumanFemaleDance } from '@mdi/js';
-import { MdOutlinePiano} from 'react-icons/md';
+import { MdOutlinePiano } from 'react-icons/md';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import type { IconType } from 'react-icons';
 
 function RecallCard1() {
   const { selectedLanguage, setSelectedLanguage } = useLanguage();
+  const [selectedAge, setSelectedAge] = useState<string | null>(null);
+  const [selectedGender, setSelectedGender] = useState<string | null>(null);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
   const content = {
     EN: {
@@ -40,7 +49,7 @@ function RecallCard1() {
       age: 'Age',
       child1: 'Child 1',
       child1Description: 'I struggle to control myself. I get into fights during football matches.',
-      SelectIcons: 'Select icons:',
+      selectIcons: 'Select icons:',
     },
     IT: {
       playMat: 'Gioca a MAT',
@@ -71,22 +80,72 @@ function RecallCard1() {
       age: 'Età',
       child1: 'Carta 1',
       child1Description: 'Ho difficoltà a controllarmi. Litigo con gli altri durante le partite di calcio.',
-      SelectIcons: 'Seleziona le icone:',
+      selectIcons: 'Seleziona le icone:',
     }
   };
 
-  const selectedContent = content[selectedLanguage];
+  const selectedContent = content[selectedLanguage] || content.EN;
+
+  const ages = ['7', '8', '9', '10', '11', '/'];
+  const genders = [
+    { icon: faFemale, label: 'Female' },
+    { icon: faMale, label: 'Male' },
+    { icon: faSlash, label: 'Other' },
+  ];
+  const interests = [
+    { icon: faFutbol, label: 'Football' },
+    { icon: faGamepad, label: 'Gaming' },
+    { icon: faFlask, label: 'Science' },
+    { icon: faMusic, label: 'Music' },
+    { icon: faBook, label: 'Reading' },
+    { icon: MdOutlinePiano, label: 'Piano' },
+    { icon: faComputer, label: 'Computing' },
+    { icon: faCalculator, label: 'Math' },
+    { icon: faPuzzlePiece, label: 'Puzzles' },
+    { icon: faBicycle, label: 'Cycling' },
+    { icon: faPaintBrush, label: 'Painting' },
+    { icon: faRunning, label: 'Running' },
+    { icon: mdiHumanFemaleDance, label: 'Dancing' },
+    { icon: faSlash, label: 'Other' },
+  ];
+
+  const handleAgeSelect = (value: string) => {
+    setSelectedAge((prev) => (prev === value ? null : value));
+  };
+
+  const handleGenderSelect = (value: string) => {
+    setSelectedGender((prev) => (prev === value ? null : value));
+  };
+
+  const handleInterestSelect = (value: string) => {
+    if (selectedInterests.includes(value)) {
+      setSelectedInterests(selectedInterests.filter((item) => item !== value));
+    } else if (selectedInterests.length < 4) {
+      setSelectedInterests([...selectedInterests, value]);
+    }
+  };
+
+  const renderIcon = (icon: IconDefinition | IconType | string) => {
+    if (typeof icon === 'object' && 'iconName' in icon) {
+      return <FontAwesomeIcon icon={icon as IconDefinition} />;
+    } else if (typeof icon === 'string') {
+      return <Icon path={icon} size={1.5} />;
+    } else {
+      const IconComponent = icon as IconType;
+      return <IconComponent />;
+    }
+  };
 
   return (
-    <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
-      <div className="flex flex-col justify-center px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full" style={{ borderColor: 'rgb(34, 72, 73)' }}>
+    <div className="flex flex-col pt-4 "style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+      <div className="flex flex-col justify-center px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full border-teal-700">
         <div className="flex justify-center items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex gap-5 justify-between w-full max-w-[1089px] max-md:flex-wrap max-md:max-w-full">
             <div className="flex gap-5 justify-between max-md:flex-wrap max-md:max-w-full">
               <div className="text-5xl font-bold" style={{ color: 'rgb(212, 114, 62)' }}>
                 MAT
               </div>
-              <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
+              <div className="flex justify-center items-center px-16 my-auto text-base font-medium text-gray-900">
                 <div className="flex gap-5 justify-between">
                   <div>{selectedContent.playMat}</div>
                   <div>{selectedContent.about}</div>
@@ -115,15 +174,15 @@ function RecallCard1() {
             </>
           )}
         </div>
-        <div className="self-center mt-8 text-xl font-medium leading-8" style={{ color: 'rgb(24, 37, 39)' }}>
+        <div className="self-center mt-8 text-xl font-medium leading-8 text-gray-900">
           {selectedContent.reflectOnAssociations}
         </div>
         <div className="flex flex-col py-16 mt-16 rounded-[30px] max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(34, 72, 73)' }}>
           <div className="self-center text-5xl leading-[57.6px] max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(251, 238, 239)' }}>
             {selectedContent.recallInstructions}
           </div>
-          <div className="flex flex-col px-20 mt-16 text-lg leading-7 max-md:px-5 max-md:mt-10 max-md:max-w-full">
-            <div className="font-medium" style={{ color: 'rgb(251, 238, 239)' }}>
+          <div className="flex flex-col px-20 mt-16 text-lg leading-7 max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ color: 'rgb(251, 238, 239)' }}>
+            <div className="font-medium">
               {selectedContent.recallInstructionDetail}
             </div>
             <div className="self-center mt-16 max-w-full w-[951px] max-md:mt-10">
@@ -137,7 +196,18 @@ function RecallCard1() {
                       {selectedContent.child1Description}
                     </div>
                     <div className="mt-7 text-black">{selectedContent.gender}</div>
-                    <div className="mt-7 text-black">{selectedContent.age}</div>
+                    <div className="mt-7 text-black">
+                      {selectedContent.age}
+                      {selectedAge && (
+                        <div className="mt-2 text-black">
+                          {selectedAge === '/' ? (
+                            <FontAwesomeIcon icon={faSlash} />
+                          ) : (
+                            selectedAge
+                          )}
+                        </div>
+                      )}
+                    </div>
                     <div className="mt-24 text-black max-md:mt-10">
                       {selectedContent.interests}
                     </div>
@@ -149,45 +219,42 @@ function RecallCard1() {
                       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                         <div className="flex flex-col w-[50%] max-md:ml-0 max-md:w-full">
                           <div className="flex flex-col grow max-md:mt-10">
-                            <div className="text-4xl font-bold leading-10 text-red-50">
-                              {selectedContent.SelectIcons}
+                            <div className="text-4xl font-bold leading-10" style={{ color: 'rgb(251, 238, 239)' }}>
+                              {selectedContent.selectIcons}
                             </div>
-                            <div className="flex items-start gap-5 mt-7 text-lg font-bold leading-7 text-red-50 uppercase">
+                            <div className="flex items-start gap-5 mt-7 text-lg font-bold leading-7 uppercase" style={{ color: 'rgb(251, 238, 239)' }}>
                               <div className="flex flex-col">
                                 {selectedContent.age}
                                 <div className="flex gap-2 mt-5">
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.8rem' }}>
-                                    7
-                                  </div>
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.8rem' }}>
-                                    8
-                                  </div>
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.8rem' }}>
-                                    9
-                                  </div>
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.8rem' }}>
-                                    10
-                                  </div>
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.8rem' }}>
-                                    11
-                                  </div>
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.8rem' }}>
-                                    /
-                                  </div>
+                                  {ages.map((age) => (
+                                    <div
+                                      key={age}
+                                      className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center cursor-pointer ${
+                                        selectedAge === age ? 'bg-orange-500' : 'bg-orange-400'
+                                      }`}
+                                      style={{ fontSize: '1.8rem', color: 'black' }}
+                                      onClick={() => handleAgeSelect(age)}
+                                    >
+                                      {age === '/' ? <FontAwesomeIcon icon={faSlash} /> : age}
+                                    </div>
+                                  ))}
                                 </div>
                               </div>
                               <div className="flex flex-col ml-10">
                                 {selectedContent.gender}
                                 <div className="flex gap-2 mt-5">
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.9rem' }}>
-                                  <FontAwesomeIcon icon={faFemale} />
+                                  {genders.map((gender) => (
+                                    <div
+                                      key={gender.label}
+                                      className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center cursor-pointer ${
+                                        selectedGender === gender.label ? 'bg-orange-500' : 'bg-orange-400'
+                                      }`}
+                                      style={{ fontSize: '1.9rem', color: 'black' }}
+                                      onClick={() => handleGenderSelect(gender.label)}
+                                    >
+                                      <FontAwesomeIcon icon={gender.icon} />
                                     </div>
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center"style={{ fontSize: '1.9rem' }}>
-                                  <FontAwesomeIcon icon={faMale} />
-                                  </div>
-                                  <div className="shrink-0 w-10 h-10 bg-orange-400 text-black rounded-md flex items-center justify-center" style={{ fontSize: '1.8rem' }}>
-                                  /
-                                  </div>
+                                  ))}
                                 </div>
                               </div>
                             </div>
@@ -195,54 +262,36 @@ function RecallCard1() {
                         </div>
                       </div>
                     </div>
-                    <div className="mt-12 text-lg font-bold leading-7 text-red-50 uppercase max-md:mt-10 max-md:max-w-full">
+                    <div className="mt-12 text-lg font-bold leading-7 uppercase max-md:mt-10 max-md:max-w-full" style={{ color: 'rgb(251, 238, 239)' }}>
                       {selectedContent.interests}
                     </div>
-                    <div className="flex gap-2 mt-5 max-md:flex-wrap max-md:pr-5">
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faFutbol} />
+                    <div className="flex flex-wrap gap-2 mt-5 max-md:flex-wrap max-md:pr-5">
+                      {interests.slice(0, 10).map((interest) => (
+                        <div
+                          key={interest.label}
+                          className={`shrink-0 w-10 h-10 text-black rounded-md flex items-center justify-center cursor-pointer ${
+                            selectedInterests.includes(interest.label) ? 'bg-orange-500' : 'bg-orange-400'
+                          }`}
+                          style={{ fontSize: '1.8rem', color: 'black' }}
+                          onClick={() => handleInterestSelect(interest.label)}
+                        >
+                          {renderIcon(interest.icon)}
                         </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faGamepad} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faFlask} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faMusic} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faBook} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <MdOutlinePiano />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faComputer} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faCalculator} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faPuzzlePiece} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faBicycle} />
-                        </div>
+                      ))}
                     </div>
-                    <div className="flex gap-2 items-start self-start mt-4">
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faPaintBrush} />
+                    <div className="flex flex-wrap gap-2 mt-2 max-md:flex-wrap max-md:pr-5">
+                      {interests.slice(10).map((interest) => (
+                        <div
+                          key={interest.label}
+                          className={`shrink-0 w-10 h-10 text-black rounded-md flex items-center justify-center cursor-pointer ${
+                            selectedInterests.includes(interest.label) ? 'bg-orange-500' : 'bg-orange-400'
+                          }`}
+                          style={{ fontSize: '1.8rem', color: 'black' }}
+                          onClick={() => handleInterestSelect(interest.label)}
+                        >
+                          {renderIcon(interest.icon)}
                         </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <FontAwesomeIcon icon={faRunning} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        <Icon path={mdiHumanFemaleDance} size={1.5} />
-                        </div>
-                      <div className="shrink-0 w-10 h-10 text-black bg-orange-400 rounded-md flex items-center justify-center " style={{ fontSize: '1.8rem' }}>
-                        /
-                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -260,26 +309,26 @@ function RecallCard1() {
           {selectedContent.termsConfirmation}
         </div>
       </div>
-      <div className="flex flex-col px-16 py-20 mt-48 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+      <div className="flex flex-col px-16 py-20 mt-48 w-full max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)' }} >
         <div className="py-1 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
               <div className="flex flex-col leading-[150%] max-md:mt-10 max-md:max-w-full">
-                <div className="text-5xl font-bold max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(212, 114, 62)' }}>
+                <div className="text-5xl font-bold max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(212, 114, 62)' }} >
                   MAT
                 </div>
-                <div className="mt-3 text-base max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
+                <div className="mt-3 text-base max-md:max-w-full text-gray-900">
                   {selectedContent.memoryTest}
                 </div>
                 <div className="flex gap-4 mt-3 max-md:flex-wrap">
-                  <div className="flex-1 justify-center self-start p-3 text-base bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(24, 37, 39)' }}>
+                  <div className="flex-1 justify-center self-start p-3 text-base bg-white rounded-lg border border-solid text-neutral-600 border-gray-900">
                     {selectedContent.enterName}
                   </div>
                   <div className="justify-center px-8 py-3 text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
                     {selectedContent.playNow}
                   </div>
                 </div>
-                <div className="mt-4 text-xs max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
+                <div className="mt-4 text-xs max-md:max-w-full text-gray-900">
                   {selectedContent.termsConfirmation}
                 </div>
               </div>
@@ -288,7 +337,7 @@ function RecallCard1() {
               <div className="grow justify-end max-md:mt-10 max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                   <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col grow pb-3.5 text-sm leading-5 max-md:mt-10" style={{ color: 'rgb(24, 37, 39)' }}>
+                    <div className="flex flex-col grow pb-3.5 text-sm leading-5 max-md:mt-10 text-gray-900">
                       <div className="text-base font-semibold leading-6">{selectedContent.explore}</div>
                       <div className="mt-11 max-md:mt-10">{selectedContent.howToPlay}</div>
                       <div className="mt-4">{selectedContent.about}</div>
@@ -296,7 +345,7 @@ function RecallCard1() {
                     </div>
                   </div>
                   <div className="flex flex-col ml-5 w-[45%] max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col grow text-sm leading-5 max-md:mt-10" style={{ color: 'rgb(24, 37, 39)' }}>
+                    <div className="flex flex-col grow text-sm leading-5 max-md:mt-10 text-gray-900">
                       <div className="text-base font-semibold">{selectedContent.followUs}</div>
                       <div className="flex gap-3 py-2 mt-4 whitespace-nowrap">
                         <img
@@ -337,8 +386,8 @@ function RecallCard1() {
             </div>
           </div>
         </div>
-        <div className="shrink-0 mt-10 h-px max-md:max-w-full" style={{ backgroundColor: 'rgb(24, 37, 39)' }} />
-        <div className="flex gap-5 justify-between mt-8 w-full text-sm leading-5 max-md:flex-wrap max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
+        <div className="shrink-0 mt-10 h-px max-md:max-w-full bg-gray-900" />
+        <div className="flex gap-5 justify-between mt-8 w-full text-sm leading-5 max-md:flex-wrap max-md:max-w-full text-gray-900">
           <div>{selectedContent.allRightsReserved}</div>
           <div className="flex gap-5 justify-between font-medium">
             <div className="underline">{selectedContent.privacyPolicy}</div>
