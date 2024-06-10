@@ -11,12 +11,12 @@ import { useSelections } from '../context/SelectionsContext'; // Ensure the path
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import type { IconType } from 'react-icons';
 
-function RecallCard1() {
+function RecallCard2() {
   const { selectedLanguage, setSelectedLanguage } = useLanguage();
   const { selectedAnswers, updateSelectedAnswers } = useSelections();
 
   const router = useRouter();
-  const cardIndex = 0;
+  const cardIndex = 1;
 
   const content = {
     EN: {
@@ -46,8 +46,8 @@ function RecallCard1() {
       interests: 'Interests',
       gender: 'Gender',
       age: 'Age',
-      child1: 'Child 1',
-      child1Description: 'I struggle to control myself. I get into fights during football matches.',
+      child1: 'Child 2',
+      child1Description: 'I am responsible, studious, serious, and disciplined. I need the courage to cope with my desires.',
       selectIcons: 'Select icons:',
     },
     IT: {
@@ -77,8 +77,8 @@ function RecallCard1() {
       interests: 'Interessi',
       gender: 'Genere',
       age: 'Età',
-      child1: 'Carta 1',
-      child1Description: 'Ho difficoltà a controllarmi. Litigo con gli altri durante le partite di calcio.',
+      child1: 'Carta 2',
+      child1Description: 'Sono responsabile, studio molto, e ho molta disciplina e serietà. Ho bisogno del coraggio per far fronte ai miei desideri.',
       selectIcons: 'Seleziona le icone:',
     }
   };
@@ -136,7 +136,7 @@ function RecallCard1() {
 
   const handleContinue = () => {
     console.log('Selections:', selectedAnswers[cardIndex]);
-    router.push('/recallcard2');
+    router.push('/recallcard3');
   };
 
   const renderIcon = (icon: IconDefinition | IconType | string) => {
@@ -328,7 +328,7 @@ function RecallCard1() {
             </button>
           </div>
           <div className="flex flex-col justify-center items-start mt-7 bg-red-50 max-md:pr-5 max-md:max-w-full">
-            <div className="shrink-0 max-w-full h-3.5 bg-orange-400 w-1/6" />
+            <div className="shrink-0 max-w-full h-3.5 bg-orange-400 w-2/6" />
           </div>
         </div>
         <div className="self-start mt-4 ml-3 text-base font-medium leading-6 text-gray-800 max-md:max-w-full">
@@ -428,4 +428,4 @@ function RecallCard1() {
   );
 }
 
-export default RecallCard1;
+export default RecallCard2;
