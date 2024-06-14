@@ -48,7 +48,11 @@ function DemographicQuestions() {
       answersSavedAnonymously: 'Your answers will be saved anonymously.',
       enterName: 'Enter your name',
       playNow: 'Play now',
-      reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.'
+      reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.',
+      years_0_2: '0-2 years',
+      years_3_5: '3-5 years',
+      years_6_10: '6-10 years',
+      years_10_plus: '10+ years'
     },
     IT: {
       playMat: 'Gioca a MAT',
@@ -86,7 +90,11 @@ function DemographicQuestions() {
       answersSavedAnonymously: 'Le tue risposte saranno salvate in modo anonimo.',
       enterName: 'Inserisci il tuo nome',
       playNow: 'Gioca ora',
-      reflectOnAssociations: 'Gioca a MAT, il Test di Associazione di Memoria, per riflettere sulle associazioni inconsce.'
+      reflectOnAssociations: 'Gioca a MAT, il Test di Associazione di Memoria, per riflettere sulle associazioni inconsce.',
+      years_0_2: '0-2 anni',
+      years_3_5: '3-5 anni',
+      years_6_10: '6-10 anni',
+      years_10_plus: '10+ anni'
     }
   };
 
@@ -215,19 +223,19 @@ function DemographicQuestions() {
               <div className="flex flex-col gap-2 mt-4 text-lg font-medium" style={{ color: 'rgb(251, 238, 239)' }}>
                 <label className="flex items-center">
                   <input type="radio" value="0-2 years" checked={selectedExperience === '0-2 years'} onChange={handleExperienceChange} className="mr-2" />
-                  0-2 years
+                  {selectedContent.years_0_2}
                 </label>
                 <label className="flex items-center">
                   <input type="radio" value="3-5 years" checked={selectedExperience === '3-5 years'} onChange={handleExperienceChange} className="mr-2" />
-                  3-5 years
+                  {selectedContent.years_3_5}
                 </label>
                 <label className="flex items-center">
                   <input type="radio" value="6-10 years" checked={selectedExperience === '6-10 years'} onChange={handleExperienceChange} className="mr-2" />
-                  6-10 years
+                  {selectedContent.years_6_10}
                 </label>
                 <label className="flex items-center">
                   <input type="radio" value="10+ years" checked={selectedExperience === '10+ years'} onChange={handleExperienceChange} className="mr-2" />
-                  10+ years
+                  {selectedContent.years_10_plus}
                 </label>
                 <label className="flex items-center">
                   <input type="radio" value="I am not a teacher" checked={selectedExperience === 'I am not a teacher'} onChange={handleExperienceChange} className="mr-2" />

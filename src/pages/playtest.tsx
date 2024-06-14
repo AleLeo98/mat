@@ -35,7 +35,8 @@ const PlaytestLanguage: React.FC = () => {
       privacyPolicy: 'Privacy Policy',
       termsOfService: 'Terms of Service',
       cookiesSettings: 'Cookies Settings',
-      reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.'
+      reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.',
+      preliminaryInformation: 'Preliminary Information'
     },
     IT: {
       playMat: 'Gioca a MAT',
@@ -62,7 +63,8 @@ const PlaytestLanguage: React.FC = () => {
       privacyPolicy: 'Politica sulla privacy',
       termsOfService: 'Termini di servizio',
       cookiesSettings: 'Impostazioni dei cookie',
-      reflectOnAssociations: 'Gioca a MAT, il Test di Associazione della Memoria, per riflettere sulle associazioni inconsce.'
+      reflectOnAssociations: 'Gioca a MAT, il Test di Associazione della Memoria, per riflettere sulle associazioni inconsce.',
+      preliminaryInformation: 'Informazioni Preliminari'
     }
   };
 
@@ -82,7 +84,7 @@ const PlaytestLanguage: React.FC = () => {
         <div className="flex justify-center items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex gap-5 justify-between w-full max-w-[1089px] max-md:flex-wrap max-md:max-w-full">
             <div className="flex gap-5 justify-between max-md:flex-wrap max-md:max-w-full">
-            <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
+              <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
                   <div onClick={handlePlayNow} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
@@ -117,7 +119,7 @@ const PlaytestLanguage: React.FC = () => {
         </div>
         <div className="flex flex-col py-16 mt-16 rounded-[30px] max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(34, 72, 73)' }}>
           <div className="self-center text-5xl leading-[57.6px] max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(251, 238, 239)' }}>
-            Preliminary Information
+            {selectedContent.preliminaryInformation}
           </div>
           <div className="flex flex-col px-16 mt-16 mb-5 text-lg leading-7 max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ color: 'rgb(251, 238, 239)' }}>
             <div className="font-medium leading-7 max-md:max-w-full">
