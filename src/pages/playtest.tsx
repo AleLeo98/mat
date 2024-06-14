@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext'; // Ensure the path is 
 
 const PlaytestLanguage: React.FC = () => {
   const { selectedLanguage, setSelectedLanguage } = useLanguage();
+  const [name, setName] = useState('');
   const [isConsentChecked, setIsConsentChecked] = useState(false);
   const router = useRouter();
 
@@ -67,24 +68,30 @@ const PlaytestLanguage: React.FC = () => {
 
   const selectedContent = content[selectedLanguage];
 
+  const handlePlayNow = () => {
+    if (!name) {
+      alert('Please enter your name before proceeding.');
+    } else {
+      router.push('/playtest');
+    }
+  };
+
   return (
     <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
       <div className="flex flex-col justify-center px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)', borderColor: 'rgb(34, 72, 73)' }}>
         <div className="flex justify-center items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex gap-5 justify-between w-full max-w-[1089px] max-md:flex-wrap max-md:max-w-full">
             <div className="flex gap-5 justify-between max-md:flex-wrap max-md:max-w-full">
-              <div className="text-5xl font-bold" style={{ color: 'rgb(212, 114, 62)' }}>
-                MAT
-              </div>
+            <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
-                  <div>{selectedContent.playMat}</div>
-                  <div>{selectedContent.about}</div>
-                  <div>{selectedContent.contactUs}</div>
+                  <div onClick={handlePlayNow} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                  <div onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
+                  <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                 </div>
               </div>
             </div>
-            <div className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
+            <div className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }} onClick={handlePlayNow}>
               {selectedContent.playMat}
             </div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
@@ -162,14 +169,6 @@ const PlaytestLanguage: React.FC = () => {
                 <div className="mt-3 text-base max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
                   Memory Association Test
                 </div>
-                <div className="flex gap-4 mt-3 max-md:flex-wrap">
-                  <div className="flex-1 justify-center self-start p-3 text-base bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(24, 37, 39)' }}>
-                    {selectedContent.enterName}
-                  </div>
-                  <div className="justify-center px-8 py-3 text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
-                    {selectedContent.playNow}
-                  </div>
-                </div>
                 <div className="mt-4 text-xs max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
                   {selectedContent.termsConfirmation}
                 </div>
@@ -183,9 +182,9 @@ const PlaytestLanguage: React.FC = () => {
                       <div className="text-base font-semibold leading-6">
                         {selectedContent.explore}
                       </div>
-                      <div className="mt-11 max-md:mt-10">{selectedContent.howToPlay}</div>
-                      <div className="mt-4">{selectedContent.about}</div>
-                      <div className="mt-4">{selectedContent.contactUs}</div>
+                      <div className="mt-11 max-md:mt-10" onClick={handlePlayNow} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                      <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
+                      <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>
                   </div>
                   <div className="flex flex-col ml-5 w-[45%] max-md:ml-0 max-md:w-full">

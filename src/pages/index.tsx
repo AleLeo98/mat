@@ -4,6 +4,8 @@ import LanguageSelector from '../components/LanguageSelector'; // Adjust the pat
 
 const Homepage: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<'EN' | 'IT'>('EN');
+  const [name, setName] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
 
   const content = {
@@ -38,7 +40,8 @@ const Homepage: React.FC = () => {
       memoryGamePrompt: 'Play an engaging and interactive memory game to challenge your gender biases.',
       helpSpreadAwareness: 'Help spread awareness and create a more inclusive environment.',
       termsConfirmation: 'By playing this game you\'re confirming that you agree with our Terms and Conditions.',
-      allRightsReserved: '© 2022 Gender Bias Memory Game. All rights reserved.'
+      allRightsReserved: '© 2022 Gender Bias Memory Game. All rights reserved.',
+      nameRequired: 'Please enter your name or nickname before playing.'
     },
     IT: {
       playMat: 'Gioca a MAT',
@@ -71,14 +74,37 @@ const Homepage: React.FC = () => {
       memoryGamePrompt: 'Gioca a un gioco di memoria coinvolgente e interattivo per sfidare i tuoi pregiudizi di genere.',
       helpSpreadAwareness: 'Aiuta a diffondere la consapevolezza e creare un ambiente più inclusivo.',
       termsConfirmation: 'Giocando a questo gioco confermi di accettare i nostri Termini e Condizioni.',
-      allRightsReserved: '© 2022 Gioco di Memoria sui Pregiudizi di Genere. Tutti i diritti riservati.'
+      allRightsReserved: '© 2022 Gioco di Memoria sui Pregiudizi di Genere. Tutti i diritti riservati.',
+      nameRequired: 'Inserisci il tuo nome o nickname prima di giocare.'
     }
   };
 
   const selectedContent = content[selectedLanguage];
 
+  const handlePlayNow = () => {
+    if (!name) {
+      setShowPopup(true);
+    } else {
+      router.push('/playtest');
+    }
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-md text-center">
+            <p>{selectedContent.nameRequired}</p>
+            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+              OK
+            </button>
+          </div>
+        </div>
+      )}
       <div className="flex flex-col justify-center px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)', borderColor: 'rgb(34, 72, 73)' }}>
         <div className="flex justify-between items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex items-center gap-5">
@@ -86,11 +112,11 @@ const Homepage: React.FC = () => {
             <div className="flex gap-5 justify-between my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
               <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</div>
               <div onClick={() => router.push('/about')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.about}</div>
-              <div style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.contactUs}</div>
+              <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.contactUs}</div>
             </div>
           </div>
           <div className="flex items-center gap-5">
-            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playMat}</div>
+            <div onClick={() => handlePlayNow()} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playMat}</div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
           </div>
         </div>
@@ -102,8 +128,15 @@ const Homepage: React.FC = () => {
               <div className="text-6xl font-bold leading-[72px] max-md:max-w-full max-md:text-4xl max-md:leading-[53px]" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.promoteAwareness}</div>
               <div className="mt-6 text-xl font-medium leading-8 max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>{selectedContent.moreInclusive}</div>
               <div className="flex gap-4 mt-8 text-base leading-6 max-md:flex-wrap">
-                <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(34, 72, 73)' }}>{selectedContent.enterName}</div>
-                <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playNow}</div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600"
+                  style={{ borderColor: 'rgb(34, 72, 73)' }}
+                  placeholder={selectedContent.enterName}
+                />
+                <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playNow}</div>
               </div>
             </div>
           </div>
@@ -125,7 +158,7 @@ const Homepage: React.FC = () => {
           {selectedContent.testMemory}
         </div>
         <div className="flex gap-4 pr-20 mt-4 text-base leading-6 max-md:flex-wrap max-md:pr-5">
-          <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'gray-800', cursor: 'pointer' }}>{selectedContent.playNow}</div>
+          <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'gray-800', cursor: 'pointer' }}>{selectedContent.playNow}</div>
           <div className="flex gap-2 justify-center my-auto" style={{ color: 'white' }}>
             <div className="underline">{selectedContent.learnMore}</div>
             <img
@@ -172,7 +205,7 @@ const Homepage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div onClick={() => router.push('/playtest')} className="justify-center self-start px-8 py-3 mt-7 text-base font-semibold leading-6 rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
+              <div onClick={handlePlayNow} className="justify-center self-start px-8 py-3 mt-7 text-base font-semibold leading-6 rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
                 {selectedContent.learnMore}
               </div>
             </div>
@@ -194,7 +227,7 @@ const Homepage: React.FC = () => {
                   {selectedContent.memoryGamePrompt}
                 </div>
                 <div className="flex gap-5 justify-between items-start self-center pt-4 mt-6 text-base leading-6">
-                  <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                  <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>{selectedContent.playMat}</div>
                   <div className="flex gap-2 justify-center mt-3 font-medium" style={{ color: 'white' }}>
                     <div className="underline">{selectedContent.learnMore}</div>
                     <img
@@ -237,9 +270,9 @@ const Homepage: React.FC = () => {
                   {selectedContent.helpSpreadAwareness}
                 </div>
                 <div className="flex gap-5 justify-between self-center pt-4 mt-6 text-base leading-6">
-                  <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold border border-solid rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', borderColor: 'rgb(212, 114, 62)', cursor: 'pointer' }}>{selectedContent.getInvolved}</div>
+                  <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold border border-solid rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', borderColor: 'rgb(212, 114, 62)', cursor: 'pointer' }}>{selectedContent.getInvolved}</div>
                   <div className="flex gap-2 justify-center self-start mt-3 font-medium" style={{ color: 'white' }}>
-                    <div className="underline">{selectedContent.contactUs}</div>
+                    <div className="underline" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/0e30ced968d3ea7ae79476b5fdb5c5560017144de2b684316da4f77daa13f1f1?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
@@ -260,8 +293,15 @@ const Homepage: React.FC = () => {
                 <div className="text-5xl font-bold max-md:max-w-full max-md:text-4xl" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
                 <div className="mt-3" style={{ color: 'rgb(24, 37, 39)' }}>Memory Association Test</div>
                 <div className="flex gap-4 mt-3 max-md:flex-wrap">
-                  <div className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600" style={{ borderColor: 'rgb(24, 37, 39)' }}>{selectedContent.enterName}</div>
-                  <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>{selectedContent.playNow}</div>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600"
+                    style={{ borderColor: 'rgb(24, 37, 39)' }}
+                    placeholder={selectedContent.enterName}
+                  />
+                  <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>{selectedContent.playNow}</div>
                 </div>
                 <div className="mt-4 text-xs max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
                   {selectedContent.termsConfirmation}
@@ -274,9 +314,9 @@ const Homepage: React.FC = () => {
                   <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
                     <div className="flex flex-col grow pb-3.5 text-sm leading-5 max-md:mt-10" style={{ color: 'rgb(24, 37, 39)' }}>
                       <div className="text-base font-semibold leading-6">{selectedContent.explore}</div>
-                      <div className="mt-4" onClick={() => router.push('/playtest_language')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
-                      <div className="mt-4" style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
-                      <div className="mt-4" style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
+                      <div className="mt-4" onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                      <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
+                      <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>
                   </div>
                   <div className="flex flex-col ml-5 w-[45%] max-md:ml-0 max-md:w-full">
