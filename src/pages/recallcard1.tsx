@@ -139,16 +139,16 @@ function RecallCard1() {
     router.push('/recallcard2');
   };
 
-  const renderIcon = (icon: IconDefinition | IconType | string) => {
-    if (typeof icon === 'object' && 'iconName' in icon) {
-      return <FontAwesomeIcon icon={icon as IconDefinition} />;
-    } else if (typeof icon === 'string') {
-      return <Icon path={icon} size={1.5} />;
-    } else {
-      const IconComponent = icon as IconType;
-      return <IconComponent />;
-    }
-  };
+const renderIcon = (icon: IconDefinition | IconType | string) => {
+  if (typeof icon === 'object' && 'iconName' in icon) {
+    return <FontAwesomeIcon icon={icon as IconDefinition} style={{ fontSize: '1.8rem' }} />;
+  } else if (typeof icon === 'string') {
+    return <Icon path={icon} size={1.8} color="black" />;
+  } else {
+    const IconComponent = icon as IconType;
+    return <IconComponent style={{ fontSize: '1.8rem' }} />;
+  }
+};
 
   return (
     <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>

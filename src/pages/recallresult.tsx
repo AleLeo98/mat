@@ -187,7 +187,7 @@ function RecallResult() {
               >
                 {selectedContent.close}
               </div>
-              <div className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] cursor-pointer">
+              <div className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] cursor-pointer" onClick={() => router.push('/resultshow')}>
                 {selectedContent.reviewAnswer}
               </div>
             </div>
