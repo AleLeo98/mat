@@ -89,6 +89,10 @@ const Homepage: React.FC = () => {
     }
   };
 
+  const handleLearnMore = () => {
+    router.push('/about');
+  };
+
   const handleClosePopup = () => {
     setShowPopup(false);
   };
@@ -110,13 +114,13 @@ const Homepage: React.FC = () => {
           <div className="flex items-center gap-5">
             <div className="text-5xl font-bold" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
             <div className="flex gap-5 justify-between my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
-              <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</div>
+              <div onClick={handlePlayNow} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</div>
               <div onClick={() => router.push('/about')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.about}</div>
               <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.contactUs}</div>
             </div>
           </div>
           <div className="flex items-center gap-5">
-            <div onClick={() => handlePlayNow()} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playMat}</div>
+            <div onClick={handlePlayNow} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playMat}</div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
           </div>
         </div>
@@ -160,7 +164,7 @@ const Homepage: React.FC = () => {
         <div className="flex gap-4 pr-20 mt-4 text-base leading-6 max-md:flex-wrap max-md:pr-5">
           <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'gray-800', cursor: 'pointer' }}>{selectedContent.playNow}</div>
           <div className="flex gap-2 justify-center my-auto" style={{ color: 'white' }}>
-            <div className="underline">{selectedContent.learnMore}</div>
+            <div className="underline" onClick={handleLearnMore} style={{ cursor: 'pointer' }}>{selectedContent.learnMore}</div>
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/e944f5fe055f1dea958cec7ef0bcbce7e91b6b3def12a373874dc6cd95ecaf45?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
@@ -205,7 +209,7 @@ const Homepage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div onClick={handlePlayNow} className="justify-center self-start px-8 py-3 mt-7 text-base font-semibold leading-6 rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
+              <div onClick={handleLearnMore} className="justify-center self-start px-8 py-3 mt-7 text-base font-semibold leading-6 rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
                 {selectedContent.learnMore}
               </div>
             </div>
@@ -229,7 +233,7 @@ const Homepage: React.FC = () => {
                 <div className="flex gap-5 justify-between items-start self-center pt-4 mt-6 text-base leading-6">
                   <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>{selectedContent.playMat}</div>
                   <div className="flex gap-2 justify-center mt-3 font-medium" style={{ color: 'white' }}>
-                    <div className="underline">{selectedContent.learnMore}</div>
+                    <div className="underline" onClick={handleLearnMore} style={{ cursor: 'pointer' }}>{selectedContent.learnMore}</div>
                     <img
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/fc32a6ad1122ace1237369eb8378326e0f36cf8ee0dabd793625558c408fe816?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
@@ -249,7 +253,7 @@ const Homepage: React.FC = () => {
                 <div className="mt-6 text-4xl font-bold leading-10 text-center">{selectedContent.promoteAwareness}</div>
                 <div className="mt-6 text-lg leading-7 text-center">{selectedContent.moreInclusive}</div>
                 <div className="flex gap-2 justify-center self-center mt-7 text-base leading-6">
-                  <div className="underline">{selectedContent.aboutGenderBias}</div>
+                  <div className="underline" onClick={handleLearnMore} style={{ cursor: 'pointer' }}>{selectedContent.aboutGenderBias}</div>
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/94a330ae7d679f3f938a6856ff743704837b4a9d7703ac3185fd7d5c3183a6a9?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
@@ -314,7 +318,7 @@ const Homepage: React.FC = () => {
                   <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
                     <div className="flex flex-col grow pb-3.5 text-sm leading-5 max-md:mt-10" style={{ color: 'rgb(24, 37, 39)' }}>
                       <div className="text-base font-semibold leading-6">{selectedContent.explore}</div>
-                      <div className="mt-4" onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                      <div className="mt-4" onClick={handlePlayNow} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
                       <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                       <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>
