@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import LanguageSelector from '../components/LanguageSelector'; // Adjust the path based on your directory structure
+import { useLanguage } from '../context/LanguageContext'; // Adjust the path based on your directory structure
 
 const About: React.FC = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<'EN' | 'IT'>('EN');
+  const { selectedLanguage, setSelectedLanguage } = useLanguage();
+  const [name, setName] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
 
   const content = {
@@ -42,7 +45,8 @@ const About: React.FC = () => {
       allRightsReserved: '© 2022 Gender Bias Memory Game. All rights reserved.',
       aboutGenderBiasInEducation: 'About Gender Bias in Education',
       promotingAwareness: 'Promoting Awareness Through an Engaging Game',
-      addressGenderBiases: 'One effective way to address gender biases among teachers is through an engaging and interactive memory game. By presenting descriptions of children without revealing their associated genders, the game prompts reflection on unconscious gender associations. This blog section explores how the Memory Association Test (MAT) aims to promote awareness of gender biases in education.'
+      addressGenderBiases: 'One effective way to address gender biases among teachers is through an engaging and interactive memory game. By presenting descriptions of children without revealing their associated genders, the game prompts reflection on unconscious gender associations. This blog section explores how the Memory Association Test (MAT) aims to promote awareness of gender biases in education.',
+      nameRequired: 'Please enter your name or nickname before playing.'
     },
     IT: {
       playMat: 'Gioca a MAT',
@@ -79,26 +83,49 @@ const About: React.FC = () => {
       allRightsReserved: '© 2022 Gioco di Memoria sui Pregiudizi di Genere. Tutti i diritti riservati.',
       aboutGenderBiasInEducation: 'Informazioni sui pregiudizi di genere nell\'istruzione',
       promotingAwareness: 'Promuovere la consapevolezza attraverso un gioco coinvolgente',
-      addressGenderBiases: 'Un modo efficace per affrontare i pregiudizi di genere tra gli insegnanti è attraverso un gioco di memoria coinvolgente e interattivo. Presentando descrizioni di bambini senza rivelare i loro generi associati, il gioco invita a riflettere sulle associazioni di genere inconsce. Questa sezione del blog esplora come il Test di Associazione di Memoria (MAT) mira a promuovere la consapevolezza sui pregiudizi di genere nell\'istruzione.'
+      addressGenderBiases: 'Un modo efficace per affrontare i pregiudizi di genere tra gli insegnanti è attraverso un gioco di memoria coinvolgente e interattivo. Presentando descrizioni di bambini senza rivelare i loro generi associati, il gioco invita a riflettere sulle associazioni di genere inconsce. Questa sezione del blog esplora come il Test di Associazione di Memoria (MAT) mira a promuovere la consapevolezza sui pregiudizi di genere nell\'istruzione.',
+      nameRequired: 'Inserisci il tuo nome o nickname prima di giocare.'
     }
   };
 
   const selectedContent = content[selectedLanguage];
 
+  const handlePlayNow = () => {
+    if (!name) {
+      setShowPopup(true);
+    } else {
+      router.push('/playtest');
+    }
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className="flex flex-col items-center pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-md text-center">
+            <p>{selectedContent.nameRequired}</p>
+            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+              OK
+            </button>
+          </div>
+        </div>
+      )}
       <div className="flex flex-col justify-center self-stretch px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)', borderColor: 'rgb(34, 72, 73)' }}>
         <div className="flex justify-between items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex items-center gap-5">
             <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
             <div className="flex gap-5 justify-between my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
-              <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</div>
+              <div onClick={handlePlayNow} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.playMat}</div>
               <div onClick={() => router.push('/about')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.about}</div>
               <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer', color: 'rgb(24, 37, 39)' }}>{selectedContent.contactUs}</div>
             </div>
           </div>
           <div className="flex items-center gap-5">
-            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playMat}</div>
+            <div onClick={handlePlayNow} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playMat}</div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
           </div>
         </div>
@@ -172,12 +199,15 @@ const About: React.FC = () => {
                   Memory Association Test
                 </div>
                 <div className="flex gap-4 mt-3 max-md:flex-wrap">
-                  <div className="flex-1 justify-center self-start p-3 text-base bg-white rounded-lg border border-gray-800 border-solid text-neutral-600">
-                    {selectedContent.enterYourName}
-                  </div>
-                  <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 text-lg font-semibold rounded-[500px] max-md:px-5 cursor-pointer" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
-                    {selectedContent.playNow}
-                  </div>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600"
+                    style={{ borderColor: 'rgb(34, 72, 73)' }}
+                    placeholder={selectedContent.enterYourName}
+                  />
+                  <div onClick={handlePlayNow} className="justify-center px-8 py-3 font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>{selectedContent.playNow}</div>
                 </div>
                 <div className="mt-4 text-xs text-gray-800 max-md:max-w-full">
                   {selectedContent.termsConfirmation}
@@ -192,7 +222,7 @@ const About: React.FC = () => {
                       <div className="text-base font-semibold leading-6">
                         {selectedContent.explore}
                       </div>
-                      <div onClick={() => router.push('/playtest')} className="mt-11 max-md:mt-10 cursor-pointer">{selectedContent.howToPlay}</div>
+                      <div onClick={handlePlayNow} className="mt-11 max-md:mt-10 cursor-pointer">{selectedContent.howToPlay}</div>
                       <div onClick={() => router.push('/about')} className="mt-4 cursor-pointer">{selectedContent.about}</div>
                       <div onClick={() => router.push('/contact')} className="mt-4 cursor-pointer">{selectedContent.contactUs}</div>
                     </div>

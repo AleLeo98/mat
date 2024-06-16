@@ -81,7 +81,7 @@ function InstructionPage() {
         <div className="flex justify-center items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex gap-5 justify-between w-full max-w-[1089px] max-md:flex-wrap max-md:max-w-full">
             <div className="flex gap-5 justify-between max-md:flex-wrap max-md:max-w-full">
-            <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
+              <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
                   <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
@@ -120,10 +120,17 @@ function InstructionPage() {
               <span className="font-bold">{selectedContent.videoInstructions}</span>: 
             </div>
             <div className="flex justify-center mt-8">
-              <video width="560" height="315" controls>
-                <source src="/RecallVideo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              {selectedLanguage === 'EN' ? (
+                <video key="EN" width="560" height="315" controls>
+                  <source src="/RecallVideo.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <video key="IT" width="560" height="315" controls>
+                  <source src="/RecallVideoIT.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </div>
             <div className="flex gap-4 self-start mt-6 font-semibold">
               <div className={`shrink-0 rounded border border-solid h-[30px] w-[30px] cursor-pointer ${isConsentChecked ? 'bg-green-500' : 'bg-red-50'}`} style={{ borderColor: 'rgb(34, 72, 73)' }} onClick={() => setIsConsentChecked(!isConsentChecked)} />
@@ -150,7 +157,7 @@ function InstructionPage() {
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
               <div className="flex flex-col leading-[150%] max-md:mt-10 max-md:max-w-full">
-              <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
+                <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
                 <div className="mt-3 text-base max-md:max-w-full" style={{ color: 'rgb(24, 37, 39)' }}>
                   Memory Association Test
                 </div>

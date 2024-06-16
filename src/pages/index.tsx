@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import LanguageSelector from '../components/LanguageSelector'; // Adjust the path based on your directory structure
+import { useLanguage } from '../context/LanguageContext';
 
 const Homepage: React.FC = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<'EN' | 'IT'>('EN');
+  const { selectedLanguage, setSelectedLanguage } = useLanguage();
   const [name, setName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();

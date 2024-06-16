@@ -303,7 +303,7 @@ function ResultShow() {
               <div className="flex flex-col w-[42%] max-md:w-full">
                 <div className="flex flex-col px-8 pt-5 pb-10 w-full bg-red-50 rounded-3xl max-md:px-5">
                   <div className="self-center text-4xl font-bold leading-10 text-gray-800">
-                    {selectedLanguage === 'IT' ? `Bambino ${child.id}` : `Child ${child.id}`}
+                    {selectedLanguage === 'IT' ? `Carta ${child.id}` : `Child ${child.id}`}
                   </div>
                   <div className="mt-5 font-medium leading-7 text-gray-800">
                     {child.description}

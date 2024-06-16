@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import LanguageSelector from '../components/LanguageSelector'; // Adjust the path based on your directory structure
+import { useLanguage } from '../context/LanguageContext';
 
 interface MenuItemProps {
   text: string;
@@ -41,7 +42,9 @@ const Menu: React.FC<MenuProps> = ({ items }) => (
 );
 
 const Contact: React.FC = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<'EN' | 'IT'>('EN');
+  const { selectedLanguage, setSelectedLanguage } = useLanguage();
+  const [name, setName] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
 
   const content = {
@@ -67,7 +70,8 @@ const Contact: React.FC = () => {
       contactTitle: 'Contact us',
       contactDescription1: 'If you have any questions or need further information, feel free to reach out to us. We are here to help.',
       contactDescription2: 'For any questions or concerns about the study, you can contact Alessio Leoncini at',
-      contactEmail: 'leonca@usi.ch'
+      contactEmail: 'leonca@usi.ch',
+      nameRequired: 'Please enter your name or nickname before playing.'
     },
     IT: {
       playMat: 'Gioca a MAT',
@@ -91,14 +95,37 @@ const Contact: React.FC = () => {
       contactTitle: 'Contattaci',
       contactDescription1: 'Se hai domande o necessiti di ulteriori informazioni, non esitare a contattarci. Siamo qui per aiutarti.',
       contactDescription2: 'Per qualsiasi domanda o dubbio sullo studio, puoi contattare Alessio Leoncini a',
-      contactEmail: 'leonca@usi.ch'
+      contactEmail: 'leonca@usi.ch',
+      nameRequired: 'Inserisci il tuo nome o nickname prima di giocare.'
     }
   };
 
   const selectedContent = content[selectedLanguage];
 
+  const handlePlayNow = () => {
+    if (!name) {
+      setShowPopup(true);
+    } else {
+      router.push('/playtest');
+    }
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-md text-center">
+            <p>{selectedContent.nameRequired}</p>
+            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+              OK
+            </button>
+          </div>
+        </div>
+      )}
       <header className="flex flex-col justify-center px-16 w-full border-0 border-solid leading-[150%] max-md:px-5 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)', borderColor: 'rgb(34, 72, 73)' }}>
         <div className="flex justify-between items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex items-center gap-5">
@@ -108,7 +135,7 @@ const Contact: React.FC = () => {
             <nav className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
               <Menu
                 items={[
-                  { text: selectedContent.playMat, isBold: true, onClick: () => router.push('/playtest') },
+                  { text: selectedContent.playMat, isBold: true, onClick: handlePlayNow },
                   { text: selectedContent.about, isBold: true, onClick: () => router.push('/about') },
                   { text: selectedContent.contactUs, isBold: true, onClick: () => router.push('/contact') }
                 ]}
@@ -116,7 +143,7 @@ const Contact: React.FC = () => {
             </nav>
           </div>
           <div className="flex items-center gap-5">
-            <button onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>
+            <button onClick={handlePlayNow} className="justify-center px-8 py-3 text-base font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'white', cursor: 'pointer' }}>
               {selectedContent.playMat}
             </button>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
@@ -152,8 +179,8 @@ const Contact: React.FC = () => {
                   <label htmlFor="userName" className="sr-only">
                     {selectedContent.enterYourName}
                   </label>
-                  <input id="userName" type="text" className="flex-1 justify-center self-start p-3 text-base bg-white rounded-lg border border-gray-800 border-solid text-neutral-600" placeholder={selectedContent.enterYourName} aria-label={selectedContent.enterYourName} />
-                  <button type="submit" onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 text-lg font-semibold rounded-[500px] max-md:px-5 cursor-pointer" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
+                  <input id="userName" type="text" className="flex-1 justify-center self-start p-3 text-base bg-white rounded-lg border border-gray-800 border-solid text-neutral-600" placeholder={selectedContent.enterYourName} value={name} onChange={(e) => setName(e.target.value)} aria-label={selectedContent.enterYourName} />
+                  <button type="button" onClick={handlePlayNow} className="justify-center px-8 py-3 text-lg font-semibold rounded-[500px] max-md:px-5 cursor-pointer" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
                     {selectedContent.playNow}
                   </button>
                 </form>
@@ -166,7 +193,7 @@ const Contact: React.FC = () => {
                   <article className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
                     <div className="flex flex-col grow pb-3.5 text-sm leading-5 text-gray-800 max-md:mt-10">
                       <h2 className="text-base font-semibold leading-6">{selectedContent.explore}</h2>
-                      <p className="mt-11 max-md:mt-10 cursor-pointer" onClick={() => router.push('/playtest')}>
+                      <p className="mt-11 max-md:mt-10 cursor-pointer" onClick={handlePlayNow}>
                         {selectedContent.howToPlay}
                       </p>
                       <p className="mt-4 cursor-pointer" onClick={() => router.push('/about')}>
