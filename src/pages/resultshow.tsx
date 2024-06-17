@@ -397,12 +397,12 @@ function ResultShow() {
             >
               {selectedContent.startRecall}
             </button>
-            <button
+            {/* <button
               className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] max-md:pl-5 font-bold"
               onClick={() => router.push('/graphview')}
             >
               {selectedContent.graphview}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
