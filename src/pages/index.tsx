@@ -21,6 +21,8 @@ const Homepage: React.FC = () => {
       contactUs: 'Contact us',
       enterName: 'Enter your name or nickname...',
       howItWorks: 'How it Works',
+      info: "Teachers are presented with descriptions of children without revealing the associated genders.",
+      info2: "Reflect on the unconscious associations you may have between gender and various characteristics or attributes.",
       challengeAssumptions: 'Challenge Your Assumptions',
       learnMore: 'Learn more',
       explore: 'Explore',
@@ -55,6 +57,8 @@ const Homepage: React.FC = () => {
       contactUs: 'Contattaci',
       enterName: 'Inserisci il tuo nome o nickname...',
       howItWorks: 'Come Funziona',
+      info: "Gli insegnanti vengono presentati con descrizioni di bambini senza rivelare i generi associati.",
+      info2: "Rifletti sulle associazioni inconsce che potresti avere tra genere e varie caratteristiche o attributi.",
       challengeAssumptions: 'Sfida i tuoi pregiudizi',
       learnMore: 'Scopri di più',
       explore: 'Esplora',
@@ -104,7 +108,7 @@ const Homepage: React.FC = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded shadow-md text-center">
             <p>{selectedContent.nameRequired}</p>
-            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-orange-400 text-white rounded">
               OK
             </button>
           </div>
@@ -199,13 +203,13 @@ const Homepage: React.FC = () => {
                   <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                     <div className="flex flex-col max-md:mt-8" style={{ color: 'rgb(24, 37, 39)' }}>
                       <div className="text-xl font-bold leading-7">{selectedContent.howItWorks}</div>
-                      <div className="mt-4 text-base leading-6">Gli insegnanti vengono presentati con descrizioni di bambini senza rivelare i generi associati.</div>
+                      <div className="mt-4 text-base leading-6">{selectedContent.info}</div>
                     </div>
                   </div>
                   <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                     <div className="flex flex-col grow max-md:mt-8" style={{ color: 'rgb(24, 37, 39)' }}>
                       <div className="text-xl font-bold leading-7">{selectedContent.challengeAssumptions}</div>
-                      <div className="mt-4 text-base leading-6">Rifletti sulle associazioni inconsce che potresti avere tra genere e varie caratteristiche o attributi.</div>
+                      <div className="mt-4 text-base leading-6">{selectedContent.info2}</div>
                     </div>
                   </div>
                 </div>
