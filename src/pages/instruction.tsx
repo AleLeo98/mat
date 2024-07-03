@@ -21,10 +21,11 @@ function InstructionPage() {
       reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.',
       instructions: 'Instructions',
       part1: 'Part 1: Memorization',
-      part1Description: 'During this part of the test, you will be shown cards that describe children. Your goal is to memorize as many details about each child as possible. Once you feel confident that you have memorized all the information, you may proceed to the next child. Please note that you are not allowed to take any notes during this part of the test, as the purpose is to test your memory only.',
+      part1Description: 'During this part of the test, you will be shown cards that describe children. Your goal is to memorize as many details about each child as possible (icons and phrase). Once you feel confident that you have memorized all the information, you may proceed to the next child. Please note that you are not allowed to take any notes during this part of the test, as the purpose is to test your memory only.',
       part2: 'Part 2: Recall',
-      part2Description: 'After you have completed the memorization part of the test, you will be asked to recall all the information you have memorized about each child. You will need to provide as much detail as possible.',
+      part2Description: 'After you have completed the memorization part of the test, you will be asked to recall all the icons you have memorized about each child. You will need to provide as much detail as possible.',
       videoInstructions: 'Video Instructions',
+      videoInstructionsDescription: 'Watch the video instructions below for a detailed explanation of the recall card process.',
       consentRead: 'I have read and understood the consent.',
       continue: 'Continue',
       termsConfirmation: 'By playing this game you\'re confirming that you agree with our Terms and Conditions.',
@@ -52,10 +53,11 @@ function InstructionPage() {
       reflectOnAssociations: 'Gioca a MAT, il Test di Associazione di Memoria, per riflettere sulle associazioni inconsce.',
       instructions: 'Istruzioni',
       part1: 'Parte 1: Memorizzazione',
-      part1Description: 'Durante questa parte del test, ti verranno mostrate delle carte che descrivono i bambini. Il tuo obiettivo è memorizzare quanti più dettagli possibili su ogni bambino. Una volta che ti senti sicuro di aver memorizzato tutte le informazioni, puoi procedere al bambino successivo. Si prega di notare che non è consentito prendere appunti durante questa parte del test, poiché lo scopo è testare solo la tua memoria.',
+      part1Description: 'Durante questa parte del test, ti verranno mostrate delle carte che descrivono i bambini. Il tuo obiettivo è memorizzare quanti più dettagli possibili su ogni bambino (icone e frase). Una volta che ti senti sicuro di aver memorizzato tutte le informazioni, puoi procedere al bambino successivo. Si prega di notare che non è consentito prendere appunti durante questa parte del test, poiché lo scopo è testare solo la tua memoria.',
       part2: 'Parte 2: Richiamo',
-      part2Description: 'Dopo aver completato la parte di memorizzazione del test, ti verrà chiesto di richiamare tutte le informazioni che hai memorizzato su ogni bambino. Dovrai fornire quanti più dettagli possibili.',
+      part2Description: 'Dopo aver completato la parte di memorizzazione del test, ti verrà chiesto di ricordare tutte le icone che hai memorizzato su ogni bambino. Dovrai fornire quanti più dettagli possibili.',
       videoInstructions: 'Istruzioni Video',
+      videoInstructionsDescription: 'Guarda le istruzioni video di seguito per una spiegazione dettagliata del processo della carta di richiamo.',
       consentRead: 'Ho letto e compreso il consenso.',
       continue: 'Continua',
       termsConfirmation: 'Giocando a questo gioco confermi di accettare i nostri Termini e Condizioni.',
@@ -113,11 +115,11 @@ function InstructionPage() {
             <div className="font-medium leading-7 max-md:max-w-full">
               <span className="font-bold">{selectedContent.part1}</span>: {selectedContent.part1Description}
             </div>
-            <div className="mt-10 leading-7 max-md:max-w-full">
+            <div className=" font-medium mt-10 leading-7 max-md:max-w-full">
               <span className="font-bold">{selectedContent.part2}</span>: {selectedContent.part2Description}
             </div>
-            <div className="mt-12 max-md:mt-10 max-md:max-w-full">
-              <span className="font-bold">{selectedContent.videoInstructions}</span>: 
+            <div className=" font-medium mt-12 max-md:mt-10 max-md:max-w-full">
+              <span className="font-bold">{selectedContent.videoInstructions}</span>: {selectedContent.videoInstructionsDescription}
             </div>
             <div className="flex justify-center mt-8">
               {selectedLanguage === 'EN' ? (

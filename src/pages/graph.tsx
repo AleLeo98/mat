@@ -144,7 +144,7 @@ const GraphPage: React.FC = () => {
     datasets: [
       {
         data: sortedInterests.map(([, count]) => count),
-        backgroundColor: ['#D36E33', '#F29E4C', '#F1C453', '#FE5F55'],
+        backgroundColor: ['#D36E33', '#F19941','#F4AD67', '#F1C453', ],
       },
     ],
   };
