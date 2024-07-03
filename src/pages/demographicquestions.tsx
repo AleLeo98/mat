@@ -256,8 +256,7 @@ const DemographicQuestions: React.FC = () => {
                     </label>
                   </div>
                   <button
-                    className="justify-center self-start px-8 py-3 mt-8 font-semibold text-gray-800 whitespace-nowrap rounded-[500px] max-md:px-5 max-md:mt-10"
-                    style={{ backgroundColor: isFormValid ? 'rgb(212, 114, 62)' : 'rgb(212, 114, 62, 0.5)' }}
+                  className="justify-center self-start px-8 py-3 mt-8 font-semibold text-gray-800 whitespace-nowrap rounded-[500px] bg-orange-400 max-md:px-5 max-md:mt-10"
                     disabled={!isFormValid}
                     onClick={handleConfirmClick}
                   >

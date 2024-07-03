@@ -120,9 +120,22 @@ const Contact: React.FC = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded shadow-md text-center">
             <p>{selectedContent.nameRequired}</p>
-            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-orange-400 text-white rounded">
-              OK
-            </button>
+            <div className="flex gap-4 mt-4">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600"
+                style={{ borderColor: 'rgb(34, 72, 73)' }}
+                placeholder={selectedContent.enterYourName}
+              />
+              <button
+                onClick={handlePlayNow}
+                className="px-4 py-2 bg-orange-400 text-white rounded"
+              >
+                {selectedContent.playMat}
+              </button>
+            </div>
           </div>
         </div>
       )}

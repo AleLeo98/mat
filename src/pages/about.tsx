@@ -108,9 +108,19 @@ const About: React.FC = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded shadow-md text-center">
             <p>{selectedContent.nameRequired}</p>
-            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-orange-400 text-white rounded">
-              OK
-            </button>
+            <div className="flex gap-4 mt-4">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="flex-1 justify-center p-3 bg-white rounded-lg border border-solid text-neutral-600"
+                style={{ borderColor: 'rgb(34, 72, 73)' }}
+                placeholder={selectedContent.enterYourName}
+              />
+              <button onClick={handlePlayNow} className="px-4 py-2 bg-orange-400 text-white rounded">
+                {selectedContent.playMat}
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -133,10 +143,10 @@ const About: React.FC = () => {
       <div className="mt-24 text-xl font-semibold leading-8 text-center text-gray-800 max-md:mt-10">
         {selectedContent.aboutGenderBiasInEducation}
       </div>
-      <div className="mt-2.5 text-6xl font-bold text-center text-gray-800 leading-[72px] w-[923px] max-md:max-w-full max-md:text-4xl max-md:leading-[53px]">
+      <div className="mt-6 mb-2 text-6xl font-bold text-center text-gray-800 leading-[72px] max-md:max-w-full max-md:text-4xl max-md:leading-[53px]">
         {selectedContent.promotingAwareness}
       </div>
-      <div className="mt-12 text-lg font-medium leading-7 text-center text-gray-800 max-md:mt-10 max-md:max-w-full">
+      <div className="mt-6 mb-2 ml-14 mr-14 text-lg font-medium leading-7 max-md:max-w-full">
         {selectedContent.addressGenderBiases}
       </div>
       <div className="flex flex-col self-stretch px-16 py-20 mt-20 w-full text-red-50 bg-cyan-900 max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(34, 72, 73)' }}>

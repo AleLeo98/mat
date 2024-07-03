@@ -189,7 +189,7 @@ function MemCard3() {
             </div>
           </div>
           <div className="flex flex-col justify-center items-start mt-7 bg-white max-md:pr-5 max-md:max-w-full">
-            <div className="shrink-0 h-3.5 bg-orange-400 w-[158px]" />
+            <div className="shrink-0 h-3.5 bg-orange-400 w-3/6" />
           </div>
         </div>
         <div className="self-start mt-4 ml-3 text-base font-medium leading-6 text-gray-800 max-md:max-w-full">
