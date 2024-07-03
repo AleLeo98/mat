@@ -84,13 +84,13 @@ function InstructionPage() {
               <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
-                  <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                  <div onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
                   <div onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                   <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                 </div>
               </div>
             </div>
-            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
+            <div onClick={() => router.push('/demographicquestions')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
               {selectedContent.playMat}
             </div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
@@ -121,12 +121,12 @@ function InstructionPage() {
             </div>
             <div className="flex justify-center mt-8">
               {selectedLanguage === 'EN' ? (
-                <video key="EN" width="560" height="315" controls>
+                <video key="EN" width="560" height="315" controls autoPlay loop muted className="rounded-lg border-2 border-gray-800">
                   <source src="/RecallVideo.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               ) : (
-                <video key="IT" width="560" height="315" controls>
+                <video key="IT" width="560" height="315" controls autoPlay loop muted className="rounded-lg border-2 border-gray-800">
                   <source src="/RecallVideoIT.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -174,7 +174,7 @@ function InstructionPage() {
                       <div className="text-base font-semibold leading-6">
                         {selectedContent.explore}
                       </div>
-                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
+                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
                       <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                       <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>

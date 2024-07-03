@@ -94,7 +94,7 @@ const About: React.FC = () => {
     if (!name) {
       setShowPopup(true);
     } else {
-      router.push('/playtest');
+      router.push('/demographicquestions');
     }
   };
 
@@ -108,7 +108,7 @@ const About: React.FC = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded shadow-md text-center">
             <p>{selectedContent.nameRequired}</p>
-            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+            <button onClick={handleClosePopup} className="mt-4 px-4 py-2 bg-orange-400 text-white rounded">
               OK
             </button>
           </div>

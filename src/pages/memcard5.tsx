@@ -98,13 +98,13 @@ function MemCard5() {
             <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
-                <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                <div onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
                 <div onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                 <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                 </div>
               </div>
             </div>
-            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
+            <div onClick={() => router.push('/demographicquestions')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
               {selectedContent.playMat}
             </div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
@@ -129,7 +129,7 @@ function MemCard5() {
             </div>
             <div className="mt-14 mx-auto w-full max-md:mt-10">
               <div className="flex gap-5 justify-center max-md:flex-col max-md:gap-0">
-                <div className="relative flex flex-col w-[54%] max-md:ml-0 max-md:w-full">
+                <div className="relative flex flex-col w-[40%] max-md:ml-0 max-md:w-full">
                   <div className="absolute transform -rotate-6 top-4 left-2 h-[376px] w-[282px] bg-gray-200 rounded-3xl" />
                   <div className="absolute transform rotate-6 top-0 left-0 h-[376px] w-[282px] bg-white rounded-3xl flex justify-center items-center" style={{ color: 'rgb(212, 114, 62)', backgroundColor: 'rgb(251, 238, 239)' }}>
                     <div className="text-center">
@@ -138,7 +138,7 @@ function MemCard5() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col ml-8 w-[46%] max-md:ml-0 max-md:w-full">
+                <div className="flex flex-col ml-8 w-[60%] max-md:ml-0 max-md:w-full">
                   <div className="flex flex-col grow items-start py-7 pr-14 pl-6 mx-auto w-full text-lg leading-7 bg-white rounded-3xl max-md:px-5 max-md:mt-10"style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
                     <div className="self-center text-4xl font-bold leading-10 text-gray-800">
                       {selectedContent.child}
@@ -148,8 +148,8 @@ function MemCard5() {
                     </div>
                     <div className="mt-8 font-bold text-black">{selectedContent.aboutMe}</div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        <FontAwesomeIcon icon={faFemale} />
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-lg">
+                        <FontAwesomeIcon icon={faFemale} className="text-2xl" />
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[1]}
@@ -157,24 +157,24 @@ function MemCard5() {
                     </div>
                     <div className="mt-6 font-bold text-black">{selectedContent.interests}</div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        <FontAwesomeIcon icon={faCalculator} />
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-lg">
+                        <FontAwesomeIcon icon={faCalculator} className="text-2xl" />
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[2]}
                       </div>
                     </div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        <FontAwesomeIcon icon={faPuzzlePiece} />
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-lg">
+                        <FontAwesomeIcon icon={faPuzzlePiece} className="text-2xl" />
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[3]}
                       </div>
                     </div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        <FontAwesomeIcon icon={faComputer} />
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-lg">
+                        <FontAwesomeIcon icon={faComputer} className="text-2xl" />
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[4]}
@@ -218,7 +218,7 @@ function MemCard5() {
                       <div className="text-base font-semibold leading-6">
                         {selectedContent.explore}
                       </div>
-                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
+                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
                       <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                       <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>
@@ -248,7 +248,7 @@ function MemCard5() {
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/d3baabc822e405367a48a67a929730603883d9a079dd7fda39efcec660c65d69?apiKey=05441c40b3cb4dc4a2e07b16a8c29776&"
                           className="shrink-0 w-6 aspect-square"
                         />
-                        <div>{selectedContent.twitter}</div>
+                        <div>Twitter</div>
                       </div>
                       <div className="flex gap-3 py-2 whitespace-nowrap">
                         <img

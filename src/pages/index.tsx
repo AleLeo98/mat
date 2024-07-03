@@ -90,7 +90,7 @@ const Homepage: React.FC = () => {
     if (!name) {
       setShowPopup(true);
     } else {
-      router.push('/playtest');
+      router.push('/demographicquestions');
     }
   };
 

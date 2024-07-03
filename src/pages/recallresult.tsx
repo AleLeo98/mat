@@ -25,6 +25,7 @@ function RecallResult() {
       reflectOnAssociations: 'Play MAT, the Memory Association Test, to reflect on unconscious associations.',
       close: 'Close',
       reviewAnswer: 'Review answers',
+      graphView: 'Graph View',
       memoryAssociationTest: 'Memory Association Test',
       enterYourName: 'Enter your name',
       playNow: 'Play now',
@@ -55,6 +56,7 @@ function RecallResult() {
       reflectOnAssociations: 'Gioca a MAT, il Test di Associazione della Memoria, per riflettere sulle associazioni inconsce.',
       close: 'Chiudi',
       reviewAnswer: 'Rivedi le risposte',
+      graphView: 'Vista Grafico',
       memoryAssociationTest: 'Test di Associazione di Memoria',
       enterYourName: 'Inserisci il tuo nome',
       playNow: 'Gioca ora',
@@ -78,7 +80,7 @@ function RecallResult() {
     { age: '8', gender: 'Other', interests: ['Football', 'Gaming', 'Science'] },
     { age: '/', gender: 'Female', interests: ['Music', 'Reading', 'Dancing'] },
     { age: '10', gender: 'Other', interests: ['Football', 'Gaming', 'Computing'] },
-    { age: '9', gender: 'Other', interests: ['Music', 'Reading', 'Piano'] },
+    { age: '9', gender: 'Other', interests: ['Music', 'Reading', 'Painting'] },
     { age: '/', gender: 'Female', interests: ['Math', 'Puzzles', 'Computing'] },
     { age: '/', gender: 'Male', interests: ['Math', 'Cycling', 'Painting', 'Science'] }
   ];
@@ -125,13 +127,13 @@ function RecallResult() {
             <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
-                <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                <div onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
                 <div onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                 <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                 </div>
               </div>
             </div>
-            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
+            <div onClick={() => router.push('/demographicquestions')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
               {selectedContent.playMat}
             </div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
@@ -178,15 +180,20 @@ function RecallResult() {
             <div className="mt-14 font-bold max-md:mt-10 max-md:max-w-full" style={{ color: 'rgb(251, 238, 239)' }}>
               {selectedContent.thankYou}
             </div>
-            <div className="flex gap-3.5 self-end mt-20 mr-10 font-semibold text-gray-800 max-md:mt-10 max-md:mr-2.5">
+            <div className="flex justify-between items-center mt-20 mr-10 font-semibold text-gray-800 max-md:mt-10 max-md:mr-2.5">
               <div
                 className="justify-center px-8 py-3 whitespace-nowrap bg-orange-400 rounded-[500px] max-md:pr-6 max-md:pl-6 cursor-pointer"
                 onClick={handleClose}
               >
                 {selectedContent.close}
               </div>
-              <div className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] cursor-pointer" onClick={() => router.push('/resultshow')}>
-                {selectedContent.reviewAnswer}
+              <div className="flex gap-3.5">
+                <div className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] cursor-pointer" onClick={() => router.push('/resultshow')}>
+                  {selectedContent.reviewAnswer}
+                </div>
+                <div className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] cursor-pointer" onClick={() => router.push('/graph')}>
+                  {selectedContent.graphView}
+                </div>
               </div>
             </div>
           </div>
@@ -220,7 +227,7 @@ function RecallResult() {
                       <div className="text-base font-semibold leading-6">
                         {selectedContent.explore}
                       </div>
-                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
+                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
                       <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                       <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>

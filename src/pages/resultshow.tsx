@@ -134,7 +134,7 @@ const childrenInfo: { [key: string]: ChildInfo[] } = {
       description: "I am diligent and careful in my studies. I am quiet and reserved. I am imaginative and creative.",
       about: "I am nine years old.",
       age: 9,
-      interests: ["Music", "Reading", "Piano"]
+      interests: ["Music", "Reading", "Painting"]
     },
     {
       id: 5,
@@ -178,7 +178,7 @@ const childrenInfo: { [key: string]: ChildInfo[] } = {
       description: "Sono diligente e attento nei miei studi. Sono tranquillo e riservato. Sono immaginativo e creativo.",
       about: "Ho nove anni.",
       age: 9,
-      interests: ["Musica", "Libri", "Pianoforte"]
+      interests: ["Musica", "Libri", "Arte"]
     },
     {
       id: 5,
@@ -201,7 +201,7 @@ const correctAnswers = [
     { age: '8', gender: 'Other', interests: ['Football', 'Gaming', 'Science'] },
     { age: '/', gender: 'Female', interests: ['Music', 'Reading', 'Dancing'] },
     { age: '10', gender: 'Other', interests: ['Football', 'Gaming', 'Computing'] },
-    { age: '9', gender: 'Other', interests: ['Music', 'Reading', 'Piano'] },
+    { age: '9', gender: 'Other', interests: ['Music', 'Reading', 'Painting'] },
     { age: '/', gender: 'Female', interests: ['Math', 'Puzzles', 'Computing'] },
     { age: '/', gender: 'Male', interests: ['Math', 'Cycling', 'Painting', 'Science'] }
   ];
@@ -270,13 +270,13 @@ function ResultShow() {
             <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
-                <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                <div onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
                 <div onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                 <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                 </div>
               </div>
             </div>
-            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
+            <div onClick={() => router.push('/demographicquestions')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
               {selectedContent.playMat}
             </div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
@@ -397,12 +397,12 @@ function ResultShow() {
             >
               {selectedContent.startRecall}
             </button>
-            {/* <button
+            <button
               className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] max-md:pl-5 font-bold"
-              onClick={() => router.push('/graphview')}
+              onClick={() => router.push('/graph')}
             >
               {selectedContent.graphview}
-            </button> */}
+            </button>
           </div>
         </div>
       </div>
@@ -428,7 +428,7 @@ function ResultShow() {
                     <div className="text-base font-semibold leading-6">
                         {selectedContent.explore}
                       </div>
-                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
+                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
                       <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                       <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>

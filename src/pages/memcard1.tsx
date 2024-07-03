@@ -83,9 +83,9 @@ function MemCard() {
 
   const router = useRouter();
 
-const handleNextClick = () => {
-  router.push('/memcard2');
-};
+  const handleNextClick = () => {
+    router.push('/memcard2');
+  };
 
   const selectedContent = content[selectedLanguage];
 
@@ -95,16 +95,16 @@ const handleNextClick = () => {
         <div className="flex justify-center items-center px-16 max-md:px-5 max-md:mr-1 max-md:max-w-full">
           <div className="flex gap-5 justify-between w-full max-w-[1089px] max-md:flex-wrap max-md:max-w-full">
             <div className="flex gap-5 justify-between max-md:flex-wrap max-md:max-w-full">
-            <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
+              <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
               <div className="flex justify-center items-center px-16 my-auto text-base font-medium" style={{ color: 'rgb(24, 37, 39)' }}>
                 <div className="flex gap-5 justify-between">
-                <div onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
-                <div onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
-                <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
+                  <div onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.playMat}</div>
+                  <div onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
+                  <div onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                 </div>
               </div>
             </div>
-            <div onClick={() => router.push('/playtest')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
+            <div onClick={() => router.push('/demographicquestions')} className="justify-center px-8 py-3 my-auto text-lg font-semibold rounded-[500px] max-md:px-5" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)', cursor: 'pointer' }}>
               {selectedContent.playMat}
             </div>
             <LanguageSelector selectedLanguage={selectedLanguage} onSelectLanguage={setSelectedLanguage} />
@@ -129,7 +129,7 @@ const handleNextClick = () => {
             </div>
             <div className="mt-14 mx-auto w-full max-md:mt-10">
               <div className="flex gap-5 justify-center max-md:flex-col max-md:gap-0">
-                <div className="relative flex flex-col w-[54%] max-md:ml-0 max-md:w-full">
+                <div className="relative flex flex-col w-[40%] max-md:ml-0 max-md:w-full">
                   <div className="absolute transform -rotate-6 top-4 left-2 h-[376px] w-[282px] bg-gray-200 rounded-3xl" />
                   <div className="absolute transform rotate-6 top-0 left-0 h-[376px] w-[282px] bg-white rounded-3xl flex justify-center items-center" style={{ color: 'rgb(212, 114, 62)', backgroundColor: 'rgb(251, 238, 239)' }}>
                     <div className="text-center">
@@ -138,8 +138,8 @@ const handleNextClick = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col ml-8 w-[46%] max-md:ml-0 max-md:w-full">
-                  <div className="flex flex-col grow items-start py-7 pr-14 pl-6 mx-auto w-full text-lg leading-7 bg-white rounded-3xl max-md:px-5 max-md:mt-10"style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+                <div className="flex flex-col ml-8 w-[60%] max-md:ml-0 max-md:w-full">
+                  <div className="flex flex-col grow items-start py-7 pr-14 pl-6 mx-auto w-full text-lg leading-7 bg-white rounded-3xl max-md:px-5 max-md:mt-10" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
                     <div className="self-center text-4xl font-bold leading-10 text-gray-800">
                       {selectedContent.child}
                     </div>
@@ -148,7 +148,7 @@ const handleNextClick = () => {
                     </div>
                     <div className="mt-8 font-bold text-black">{selectedContent.aboutMe}</div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-2xl">
                         8
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
@@ -157,24 +157,24 @@ const handleNextClick = () => {
                     </div>
                     <div className="mt-6 font-bold text-black">{selectedContent.interests}</div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        <FontAwesomeIcon icon={faFutbol} />
-                      </div>
+                    <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-lg">
+                        <FontAwesomeIcon icon={faFutbol} className="text-2xl" />
+                    </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[2]}
                       </div>
                     </div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        <FontAwesomeIcon icon={faGamepad} />
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-lg">
+                        <FontAwesomeIcon icon={faGamepad} className="text-2xl" />
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[3]}
                       </div>
                     </div>
                     <div className="flex gap-3 mt-3.5">
-                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[25px] w-[25px]">
-                        <FontAwesomeIcon icon={faFlask} />
+                      <div className="flex justify-center items-center font-bold text-black bg-orange-400 rounded-md h-[35px] w-[35px] text-lg">
+                        <FontAwesomeIcon icon={faFlask} className="text-2xl"/>
                       </div>
                       <div className="flex-auto my-auto font-medium text-gray-800">
                         {selectedContent.childDetails[4]}
@@ -184,8 +184,8 @@ const handleNextClick = () => {
                 </div>
               </div>
             </div>
-            <div  onClick={handleNextClick} className="justify-center self-end px-8 py-3 mt-2.5 text-lg font-semibold leading-7 text-gray-800 whitespace-nowrap bg-orange-400 rounded-[500px] max-md:px-6 cursor-pointer"
-            >{selectedContent.next}
+            <div onClick={handleNextClick} className="justify-center self-end px-8 py-3 mt-2.5 text-lg font-semibold leading-7 text-gray-800 whitespace-nowrap bg-orange-400 rounded-[500px] max-md:px-6 cursor-pointer">
+              {selectedContent.next}
             </div>
           </div>
           <div className="flex flex-col justify-center items-start mt-7 bg-white max-md:pr-5 max-md:max-w-full">
@@ -196,12 +196,12 @@ const handleNextClick = () => {
           {selectedContent.termsConfirmation}
         </div>
       </div>
-      <div className="flex flex-col px-16 py-20 mt-48 w-full bg-white max-md:px-5 max-md:mt-10 max-md:max-w-full"style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
+      <div className="flex flex-col px-16 py-20 mt-48 w-full bg-white max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
         <div className="py-1 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
               <div className="flex flex-col leading-[150%] max-md:mt-10 max-md:max-w-full">
-              <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
+                <div onClick={() => router.push('/')} className="text-5xl font-bold cursor-pointer" style={{ color: 'rgb(212, 114, 62)' }}>MAT</div>
                 <div className="mt-3 text-base text-gray-800 max-md:max-w-full">
                   {selectedContent.memoryAssociationTest}
                 </div>
@@ -218,7 +218,7 @@ const handleNextClick = () => {
                       <div className="text-base font-semibold leading-6">
                         {selectedContent.explore}
                       </div>
-                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/playtest')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
+                      <div className="mt-11 max-md:mt-10" onClick={() => router.push('/demographicquestions')} style={{ cursor: 'pointer' }}>{selectedContent.howToPlay}</div>
                       <div className="mt-4" onClick={() => router.push('/about')} style={{ cursor: 'pointer' }}>{selectedContent.about}</div>
                       <div className="mt-4" onClick={() => router.push('/contact')} style={{ cursor: 'pointer' }}>{selectedContent.contactUs}</div>
                     </div>
