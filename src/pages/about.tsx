@@ -36,7 +36,7 @@ const About: React.FC = () => {
       reflectAssociations: 'Reflect on the unconscious associations you may hold between gender and various characteristics or attributes.',
       morbiSedImperdiet: 'Engage in an interactive memory game to challenge gender biases and reflect on unconscious associations.',
       whatAreGenderBiases: 'What are gender biases?',
-      genderBiasesDescription: 'Gender biases are preconceived notions or stereotypes about individuals based on their gender. These biases can influence behavior, expectations, and interactions in various aspects of life.',
+      genderBiasesDescription: "Gender biases are preconceived assumptions or prejudices directed at persons depending on their gender. They are strongly embedded in many parts of society, including the scientific community. These biases can emerge in a variety of ways, including low representation of women in specific sectors, gender stereotypes, and unequal distribution of resources and opportunities, particularly in STEM disciplines. Addressing gender prejudices necessitates raising awareness, providing education, and implementing legislation that promotes equality and inclusivity, challenging biases, and creating situations in which all persons have equal possibilities for success. These biases can show in explicit forms, where people express and accept them outright, or in implicit forms, where they influence attitudes and behaviors without conscious awareness.",
       questionsContact: 'For any questions or concerns about the study, you can contact us.',
       contactUsButton: 'Contact us',
       enterYourName: 'Enter your name',
@@ -74,7 +74,7 @@ const About: React.FC = () => {
       reflectAssociations: 'Rifletti sulle associazioni inconsce che potresti avere tra genere e varie caratteristiche o attributi.',
       morbiSedImperdiet: 'Partecipa a un gioco di memoria interattivo per sfidare i pregiudizi di genere e riflettere sulle associazioni inconsce.',
       whatAreGenderBiases: 'Cosa sono i pregiudizi di genere?',
-      genderBiasesDescription: 'I pregiudizi di genere sono nozioni preconcette o stereotipi sugli individui basati sul loro genere. Questi pregiudizi possono influenzare il comportamento, le aspettative e le interazioni in vari aspetti della vita.',
+      genderBiasesDescription: "I pregiudizi di genere sono supposizioni o pregiudizi preconcetti diretti alle persone a seconda del loro genere. Sono fortemente radicati in molte parti della società, inclusa la comunità scientifica. Questi pregiudizi possono emergere in vari modi, tra cui la scarsa rappresentanza delle donne in settori specifici, stereotipi di genere e distribuzione diseguale delle risorse e delle opportunità, in particolare nelle discipline STEM. Affrontare i pregiudizi di genere richiede sensibilizzazione, educazione e l'implementazione di leggi che promuovano l'uguaglianza e l'inclusività, sfidando i pregiudizi e creando situazioni in cui tutte le persone abbiano uguali possibilità di successo. Questi pregiudizi possono manifestarsi in forme esplicite, dove le persone li esprimono e li accettano apertamente, o in forme implicite, dove influenzano atteggiamenti e comportamenti senza consapevolezza cosciente.",
       questionsContact: 'Per qualsiasi domanda o dubbio sullo studio, puoi contattarci.',
       contactUsButton: 'Contattaci',
       enterYourName: 'Inserisci il tuo nome',
@@ -188,13 +188,13 @@ const About: React.FC = () => {
       <div className="mt-9 text-4xl font-bold leading-10 text-center text-gray-800 max-md:max-w-full">
         {selectedContent.whatAreGenderBiases}
       </div>
-      <div className="mt-2.5 text-lg font-medium leading-7 text-center text-gray-800 max-md:max-w-full">
+      <div className="mt-2.5 text-lg text-left font-medium leading-7 text-left text-gray-800 max-md:max-w-full ml-14 mr-14">
         {selectedContent.genderBiasesDescription}
       </div>
-      <div className="mt-64 text-lg font-medium leading-7 text-center text-gray-800 max-md:mt-10 max-md:max-w-full">
+      <div className="mt-6 text-lg font-medium leading-7 text-center text-gray-800 max-md:max-w-full">
         {selectedContent.questionsContact}
       </div>
-      <div onClick={() => router.push('/contact')} className="justify-center px-8 py-3 mt-6 text-lg font-semibold leading-7 rounded-[500px] max-md:px-5 max-w-[200px] mx-auto cursor-pointer" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
+      <div onClick={() => router.push('/contact')} className="justify-center px-8 py-3 mt-3 text-lg font-semibold leading-7 rounded-[500px] max-md:px-5 max-w-[200px] mx-auto cursor-pointer" style={{ backgroundColor: 'rgb(212, 114, 62)', color: 'rgb(24, 37, 39)' }}>
         {selectedContent.contactUsButton}
       </div>
       <div className="flex flex-col self-stretch px-16 py-20 mt-16 w-full bg-red-50 max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
