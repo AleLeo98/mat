@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
     <div className="flex flex-col pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded shadow-md text-center">
+          <div className="bg-white p-8 rounded shadow-md text-center text-black">
             <p>{selectedContent.nameRequired}</p>
             <div className="flex gap-4 mt-4">
               <input
