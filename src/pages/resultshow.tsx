@@ -392,13 +392,13 @@ function ResultShow() {
           ))}
           <div className="flex justify-between mt-10 w-full">
             <button
-              className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] max-md:pl-5 font-bold"
+              className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] max-md:pl-5 font-bold text-black"
               onClick={() => router.push('/recallresult')}
             >
               {selectedContent.startRecall}
             </button>
             <button
-              className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] max-md:pl-5 font-bold"
+              className="justify-center px-5 py-3 bg-orange-400 rounded-[500px] max-md:pl-5 font-bold text-black"
               onClick={() => router.push('/graph')}
             >
               {selectedContent.graphview}

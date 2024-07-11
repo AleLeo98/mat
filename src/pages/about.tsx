@@ -106,7 +106,7 @@ const About: React.FC = () => {
     <div className="flex flex-col items-center pt-4" style={{ backgroundColor: 'rgb(251, 238, 239)' }}>
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded shadow-md text-center">
+          <div className="bg-white p-8 rounded shadow-md text-center text-black">
             <p>{selectedContent.nameRequired}</p>
             <div className="flex gap-4 mt-4">
               <input
@@ -146,7 +146,7 @@ const About: React.FC = () => {
       <div className="mt-6 mb-2 text-6xl font-bold text-center text-gray-800 leading-[72px] max-md:max-w-full max-md:text-4xl max-md:leading-[53px]">
         {selectedContent.promotingAwareness}
       </div>
-      <div className="mt-6 mb-2 ml-14 mr-14 text-lg font-medium leading-7 max-md:max-w-full">
+      <div className="mt-6 mb-2 ml-14 mr-14 text-lg font-medium leading-7 text-black max-md:max-w-full">
         {selectedContent.addressGenderBiases}
       </div>
       <div className="flex flex-col self-stretch px-16 py-20 mt-20 w-full text-red-50 bg-cyan-900 max-md:px-5 max-md:mt-10 max-md:max-w-full" style={{ backgroundColor: 'rgb(34, 72, 73)' }}>

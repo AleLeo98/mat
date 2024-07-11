@@ -31,21 +31,21 @@ const ConsentModal: React.FC<ConsentModalProps> = ({ onAccept, onDeny }) => {
   const selectedContent = content[selectedLanguage];
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-[rgb(251,238,239)]">
-      <div className="bg-white p-8 rounded-md max-w-lg w-full shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">{selectedContent.title}</h2>
-        <p className="mb-4" dangerouslySetInnerHTML={{ __html: selectedContent.objective }}></p>
-        <p className="mb-4" dangerouslySetInnerHTML={{ __html: selectedContent.consent }}></p>
-        <p className="mb-4" dangerouslySetInnerHTML={{ __html: selectedContent.contact }}></p>
-        <div className="flex justify-end gap-4">
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-[rgb(251,238,239)] p-4 sm:p-8">
+      <div className="bg-white p-6 sm:p-8 rounded-md max-w-md w-full sm:max-w-lg shadow-lg text-black overflow-auto">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-black">{selectedContent.title}</h2>
+        <p className="mb-4 text-black" dangerouslySetInnerHTML={{ __html: selectedContent.objective }}></p>
+        <p className="mb-4 text-black" dangerouslySetInnerHTML={{ __html: selectedContent.consent }}></p>
+        <p className="mb-4 text-black" dangerouslySetInnerHTML={{ __html: selectedContent.contact }}></p>
+        <div className="flex flex-col sm:flex-row justify-end gap-4">
           <button
-            className="bg-red-500 text-white px-4 py-2 rounded"
+            className="bg-red-500 text-black px-4 py-2 rounded"
             onClick={onDeny}
           >
             {selectedContent.deny}
           </button>
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded"
+            className="bg-green-500 text-black px-4 py-2 rounded"
             onClick={onAccept}
           >
             {selectedContent.accept}
